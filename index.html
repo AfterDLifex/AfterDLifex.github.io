@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AfterDLifex — Cosmic Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<base target="_blank">
+</head>
+<body>
+  <!-- Particle Canvas Background -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+
+  <!-- Navigation -->
+  <nav class="nav-glass" id="navbar">
+    <div class="nav-brand">
+      <img src="assets/icon.png" alt="AfterDLifex" class="nav-icon">
+      <span class="nav-title">AfterDLifex</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link active" data-text="Home">Home</a></li>
+      <li><a href="#about" class="nav-link" data-text="About">About</a></li>
+      <li><a href="#extensions" class="nav-link" data-text="Extensions">Extensions</a></li>
+      <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
+      <li><a href="#stack" class="nav-link" data-text="Stack">Stack</a></li>
+      <li><a href="#connect" class="nav-link" data-text="Connect">Connect</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge" data-aos="fade-up">
+        <span class="badge-dot"></span>
+        <span>Open Source Developer</span>
+      </div>
+
+      <h1 class="hero-title" data-aos="fade-up" data-aos-delay="100">
+        <span class="title-line">Crafting</span>
+        <span class="title-line accent">Cosmic</span>
+        <span class="title-line">Experiences</span>
+      </h1>
+
+      <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">
+        VS Code themes, desktop applications, and developer tools <br>
+        built with aesthetic precision and functional depth.
+      </p>
+
+      <div class="hero-actions" data-aos="fade-up" data-aos-delay="300">
+        <a href="#extensions" class="btn btn-primary">
+          <span>Explore Themes</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="https://github.com/AfterDLifex" target="_blank" class="btn btn-outline">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+
+      <div class="hero-scroll" data-aos="fade-up" data-aos-delay="500">
+        <div class="scroll-indicator">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">01 — About</span>
+        <h2 class="section-title">The Developer</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-image" data-aos="fade-right">
+          <div class="image-frame">
+            <img src="assets/profile.png" alt="Sayan Das" class="profile-img">
+            <div class="image-glow"></div>
+          </div>
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-count="25">0</span>
+              <span class="stat-label">Themes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="5">0</span>
+              <span class="stat-label">Styles</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="3">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-content" data-aos="fade-left">
+          <h3 class="about-name">Sayan Das</h3>
+          <p class="about-role">Full-Stack Developer & Theme Designer</p>
+
+          <div class="about-bio">
+            <p>
+              I'm a developer crafting <strong>cosmic developer experiences</strong> — from meticulously designed 
+              VS Code themes to full-stack desktop applications. My work sits at the intersection of 
+              <span class="highlight">aesthetic precision</span> and <span class="highlight">functional depth</span>.
+            </p>
+            <p>
+              Based in <strong>West Bengal, India</strong>, I build with <strong>Tauri v2 + Angular</strong> for desktop, 
+              <strong>Rust</strong> for backend safety, and a design language rooted in 
+              <span class="highlight">calm futurism</span> and <span class="highlight">Vedic symbolism</span>.
+            </p>
+          </div>
+
+          <div class="about-quote">
+            <span class="quote-mark">"</span>
+            <p>We are all stardust coding in the void.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extensions Section -->
+  <section class="extensions section" id="extensions">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">02 — Extensions</span>
+        <h2 class="section-title">Cosmic Dark Themes</h2>
+        <p class="section-desc">25 meticulously crafted dark themes for VS Code</p>
+      </div>
+
+      <div class="extension-hero" data-aos="fade-up">
+        <div class="extension-card featured">
+          <div class="extension-glow"></div>
+          <div class="extension-content">
+            <img src="assets/icon.png" alt="Cosmic Infinity" class="extension-icon">
+            <div class="extension-info">
+              <h3>Cosmic Dark Themes Pack</h3>
+              <p class="extension-version">v1.1.0 — AURA V3</p>
+              <p class="extension-desc">
+                25 unique dark themes across 5 aesthetic styles and 5 cosmic color families. 
+                Now with bracket pair colorization, glowing error system, and unsaved file indicators.
+              </p>
+              <div class="extension-badges">
+                <span class="badge">25 Themes</span>
+                <span class="badge">5 Styles</span>
+                <span class="badge">AURA V3</span>
+                <span class="badge">MIT License</span>
+              </div>
+            </div>
+          </div>
+          <div class="extension-actions">
+            <a href="https://open-vsx.org/extension/AfterDLifex/cosmic-themes-pack" target="_blank" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+              </svg>
+              Install via Open VSX
+            </a>
+            <a href="https://github.com/AfterDLifex/cosmic-dark-themes" target="_blank" class="btn btn-outline">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+              </svg>
+              View Source
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Style Categories -->
+      <div class="style-grid">
+        <div class="style-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="style-icon">🧘</div>
+          <h4>Calm</h4>
+          <p>Deep focus, minimal distraction</p>
+          <div class="style-themes">
+            <span class="theme-tag" style="--accent:#ff7eb3">Nebula Whisper</span>
+            <span class="theme-tag" style="--accent:#7c8cfd">Cosmic Stillness</span>
+            <span class="theme-tag" style="--accent:#d4a853">Brahma Creator</span>
+            <span class="theme-tag" style="--accent:#a855f7">Void Meditation</span>
+            <span class="theme-tag" style="--accent:#34d399">Pulsar Beacon</span>
+          </div>
+        </div>
+
+        <div class="style-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="style-icon">🎮</div>
+          <h4>Gaming</h4>
+          <p>High contrast, competitive edge</p>
+          <div class="style-themes">
+            <span class="theme-tag" style="--accent:#ff7eb3">Cyber Reaper</span>
+            <span class="theme-tag" style="--accent:#7c8cfd">Deep Space Pulse</span>
+            <span class="theme-tag" style="--accent:#d4a853">Solar Flare</span>
+            <span class="theme-tag" style="--accent:#a855f7">Void Walker</span>
+            <span class="theme-tag" style="--accent:#34d399">Neon Ronin</span>
+          </div>
+        </div>
+
+        <div class="style-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="style-icon">⚡</div>
+          <h4>Neon</h4>
+          <p>Electric energy, vibrant glow</p>
+          <div class="style-themes">
+            <span class="theme-tag" style="--accent:#ff00ff">Electric Kundalini</span>
+            <span class="theme-tag" style="--accent:#00ffff">Quantum Twilight</span>
+            <span class="theme-tag" style="--accent:#ffff00">Supernova Remnant</span>
+            <span class="theme-tag" style="--accent:#ff00ff">Astral Projection</span>
+            <span class="theme-tag" style="--accent:#00ff00">Tokyo Aftermath</span>
+          </div>
+        </div>
+
+        <div class="style-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="style-icon">📜</div>
+          <h4>Classic</h4>
+          <p>Timeless elegance, refined balance</p>
+          <div class="style-themes">
+            <span class="theme-tag" style="--accent:#ff9ecd">Chandra Reflection</span>
+            <span class="theme-tag" style="--accent:#8ba4ff">Meridian Line</span>
+            <span class="theme-tag" style="--accent:#e0b86a">Celestial Archive</span>
+            <span class="theme-tag" style="--accent:#b873f7">Galactic Horizon</span>
+            <span class="theme-tag" style="--accent:#4ade80">Observatory</span>
+          </div>
+        </div>
+
+        <div class="style-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="style-icon">🕯️</div>
+          <h4>Vintage</h4>
+          <p>Warm nostalgia, aged parchment</p>
+          <div class="style-themes">
+            <span class="theme-tag" style="--accent:#e0b86a">Dusty Tome</span>
+            <span class="theme-tag" style="--accent:#8ec4d4">Forgotten Altar</span>
+            <span class="theme-tag" style="--accent:#d4a853">Ancient Codex</span>
+            <span class="theme-tag" style="--accent:#a855f7">Eclipse Shadow</span>
+            <span class="theme-tag" style="--accent:#7cb87c">Oort Cloud</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AURA V3 Features -->
+      <div class="aura-section" data-aos="fade-up">
+        <h3 class="aura-title">
+          <span class="aura-badge">NEW</span>
+          AURA V3 Engine
+        </h3>
+        <div class="aura-grid">
+          <div class="aura-feature">
+            <div class="aura-icon">🎯</div>
+            <h4>Bracket Pair Colorization</h4>
+            <p>6-level nested bracket glow with guide lines</p>
+          </div>
+          <div class="aura-feature">
+            <div class="aura-icon">⚡</div>
+            <h4>Error Glow System</h4>
+            <p>Multi-layer glowing error visualization</p>
+          </div>
+          <div class="aura-feature">
+            <div class="aura-icon">💾</div>
+            <h4>Unsaved Indicators</h4>
+            <p>Tab, Explorer, StatusBar & Minimap glow</p>
+          </div>
+          <div class="aura-feature">
+            <div class="aura-icon">🎨</div>
+            <h4>Icon State System</h4>
+            <p>Every IDE icon, every state, colored</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Install Commands -->
+      <div class="install-section" data-aos="fade-up">
+        <h3>Quick Install</h3>
+        <div class="install-tabs">
+          <button class="install-tab active" data-tab="ovsx">Open VSX</button>
+          <button class="install-tab" data-tab="manual">Manual</button>
+        </div>
+        <div class="install-content active" id="ovsx">
+          <div class="code-block">
+            <code>npx ovsx install AfterDLifex/cosmic-themes-pack</code>
+            <button class="copy-btn" data-copy="npx ovsx install AfterDLifex/cosmic-themes-pack">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="install-content" id="manual">
+          <div class="code-block">
+            <code>git clone https://github.com/AfterDLifex/cosmic-dark-themes.git<br>cd cosmic-dark-themes && code --install-extension cosmic-themes-pack.vsix</code>
+            <button class="copy-btn" data-copy="git clone https://github.com/AfterDLifex/cosmic-dark-themes.git && cd cosmic-dark-themes">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">03 — Projects</span>
+        <h2 class="section-title">What I'm Building</h2>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-icon">📦</div>
+            <div class="project-status active">Active</div>
+          </div>
+          <h3>Afterbox</h3>
+          <p>Desktop workspace manager with native Webview API, race-safe lifecycle, and multi-tenant architecture.</p>
+          <div class="project-tech">
+            <span>Tauri v2</span>
+            <span>Angular 17</span>
+            <span>Rust</span>
+            <span>SQLite</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-icon">🧘</div>
+            <div class="project-status active">Active</div>
+          </div>
+          <h3>Zen Portfolio</h3>
+          <p>Futuristic calm portfolio app with particle backgrounds, glassmorphism UI, and SQLite backend.</p>
+          <div class="project-tech">
+            <span>Tauri v2</span>
+            <span>Angular 17</span>
+            <span>Signals</span>
+            <span>WAL Mode</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-icon">⏱️</div>
+            <div class="project-status active">Active</div>
+          </div>
+          <h3>TruTimer</h3>
+          <p>Time tracking with Rust watchdog sidecar for hang detection, crash recovery, and native OS dialogs.</p>
+          <div class="project-tech">
+            <span>Tauri v2</span>
+            <span>Rust</span>
+            <span>Watchdog</span>
+            <span>IPC</span>
+          </div>
+        </div>
+
+        <div class="project-card featured-project" data-aos="fade-up" data-aos-delay="300">
+          <div class="project-glow"></div>
+          <div class="project-header">
+            <div class="project-icon">🎨</div>
+            <div class="project-status published">Published</div>
+          </div>
+          <h3>Cosmic Dark Themes</h3>
+          <p>25 dark VS Code themes with AURA V3 engine. Bracket colors, error glow, unsaved indicators.</p>
+          <div class="project-tech">
+            <span>VS Code API</span>
+            <span>Open VSX</span>
+            <span>JSON</span>
+            <span>MIT</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack Section -->
+  <section class="stack section" id="stack">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">04 — Stack</span>
+        <h2 class="section-title">Technologies</h2>
+      </div>
+
+      <div class="stack-categories">
+        <div class="stack-category" data-aos="fade-up" data-aos-delay="0">
+          <h3>Frontend</h3>
+          <div class="stack-items">
+            <div class="stack-item" data-color="#DD0031">
+              <span class="stack-dot" style="background:#DD0031"></span>
+              <span>Angular</span>
+            </div>
+            <div class="stack-item" data-color="#3178C6">
+              <span class="stack-dot" style="background:#3178C6"></span>
+              <span>TypeScript</span>
+            </div>
+            <div class="stack-item" data-color="#B7178C">
+              <span class="stack-dot" style="background:#B7178C"></span>
+              <span>RxJS</span>
+            </div>
+            <div class="stack-item" data-color="#E34F26">
+              <span class="stack-dot" style="background:#E34F26"></span>
+              <span>HTML5</span>
+            </div>
+            <div class="stack-item" data-color="#1572B6">
+              <span class="stack-dot" style="background:#1572B6"></span>
+              <span>CSS3 / SCSS</span>
+            </div>
+            <div class="stack-item" data-color="#CC6699">
+              <span class="stack-dot" style="background:#CC6699"></span>
+              <span>Sass</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack-category" data-aos="fade-up" data-aos-delay="100">
+          <h3>Backend & Desktop</h3>
+          <div class="stack-items">
+            <div class="stack-item" data-color="#000000">
+              <span class="stack-dot" style="background:#000000"></span>
+              <span>Rust</span>
+            </div>
+            <div class="stack-item" data-color="#24C8D8">
+              <span class="stack-dot" style="background:#24C8D8"></span>
+              <span>Tauri v2</span>
+            </div>
+            <div class="stack-item" data-color="#003B57">
+              <span class="stack-dot" style="background:#003B57"></span>
+              <span>SQLite</span>
+            </div>
+            <div class="stack-item" data-color="#F7DF1E">
+              <span class="stack-dot" style="background:#F7DF1E"></span>
+              <span>JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="stack-category" data-aos="fade-up" data-aos-delay="200">
+          <h3>Tools & Design</h3>
+          <div class="stack-items">
+            <div class="stack-item" data-color="#007ACC">
+              <span class="stack-dot" style="background:#007ACC"></span>
+              <span>VS Code</span>
+            </div>
+            <div class="stack-item" data-color="#F05032">
+              <span class="stack-dot" style="background:#F05032"></span>
+              <span>Git</span>
+            </div>
+            <div class="stack-item" data-color="#F24E1E">
+              <span class="stack-dot" style="background:#F24E1E"></span>
+              <span>Figma</span>
+            </div>
+            <div class="stack-item" data-color="#7c8cfd">
+              <span class="stack-dot" style="background:#7c8cfd"></span>
+              <span>Glassmorphism</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <section class="philosophy section" id="philosophy">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">05 — Philosophy</span>
+        <h2 class="section-title">Design Principles</h2>
+      </div>
+
+      <div class="principles-grid">
+        <div class="principle-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="principle-number">01</div>
+          <h3>Aesthetic Integrity</h3>
+          <p>Every pixel, every color token, every interaction is intentional. Nothing is arbitrary.</p>
+        </div>
+        <div class="principle-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="principle-number">02</div>
+          <h3>Calm Futurism</h3>
+          <p>Technology should feel like a meditation, not a battle. Soft periwinkle over harsh neon.</p>
+        </div>
+        <div class="principle-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="principle-number">03</div>
+          <h3>Memory Safety</h3>
+          <p>Rust-backed, race-safe, zero-compromise architecture. Safety is not optional.</p>
+        </div>
+        <div class="principle-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="principle-number">04</div>
+          <h3>Spiritual Symbolism</h3>
+          <p>Vedic archetypes — Harihara, Brahma, Vishnu, Shiva — woven into design language.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Connect Section -->
+  <section class="connect section" id="connect">
+    <div class="container">
+      <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">06 — Connect</span>
+        <h2 class="section-title">Let's Build Together</h2>
+      </div>
+
+      <div class="connect-grid">
+        <a href="mailto:dassayansanju@gmail.com" class="connect-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="connect-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <h4>Email</h4>
+          <p>dassayansanju@gmail.com</p>
+        </a>
+
+        <a href="https://github.com/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="connect-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+            </svg>
+          </div>
+          <h4>GitHub</h4>
+          <p>@AfterDLifex</p>
+        </a>
+
+        <a href="https://open-vsx.org/namespace/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="connect-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <h4>Open VSX</h4>
+          <p>AfterDLifex Namespace</p>
+        </a>
+      </div>
+
+      <div class="connect-footer" data-aos="fade-up">
+        <img src="assets/icon.png" alt="Cosmic Infinity" width="48">
+        <p class="connect-quote">"We code ideas into impact."</p>
+        <p class="connect-credit">Crafted with cosmic intention by Sayan Das — 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-wave">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="rgba(124,140,253,0.05)"/>
+      </svg>
+    </div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <img src="assets/icon.png" alt="AfterDLifex" width="32">
+          <span>AfterDLifex</span>
+        </div>
+        <p>Cosmic developer experiences. Open source. MIT Licensed.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
