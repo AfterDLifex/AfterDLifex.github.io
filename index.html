@@ -20,28 +20,19 @@
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <base target="_blank" />
 </head>
-'''
-
-# HTML Part 2: Body Open, Cosmic Background (Sun, Nebula, Galaxy, Shooting Stars, Planets)
-html_parts[2] = '''
 
 <body>
   <!-- ===== FIXED COSMIC BACKGROUND ===== -->
   <div class="cosmic-bg">
-    <!-- Spinning Sun -->
     <div class="sun-container">
       <div class="sun">
         <div class="sun-surface"></div>
       </div>
     </div>
-
-    <!-- Nebula Clouds -->
     <div class="nebula nebula-1"></div>
     <div class="nebula nebula-2"></div>
     <div class="nebula nebula-3"></div>
     <div class="nebula nebula-4"></div>
-
-    <!-- Spiral Galaxy -->
     <div class="galaxy-container">
       <div class="galaxy">
         <div class="galaxy-arm"></div>
@@ -57,13 +48,9 @@ html_parts[2] = '''
         <div class="galaxy-stars"></div>
       </div>
     </div>
-
-    <!-- Shooting Stars -->
     <div class="shooting-star shooting-star-1"></div>
     <div class="shooting-star shooting-star-2"></div>
     <div class="shooting-star shooting-star-3"></div>
-
-    <!-- Planets -->
     <div class="planet planet-1"></div>
     <div class="planet planet-2"></div>
     <div class="planet planet-3"></div>
@@ -71,10 +58,191 @@ html_parts[2] = '''
 
   <!-- Particle Canvas (Stars) -->
   <canvas id="particle-canvas"></canvas>
-  '''
 
-  # HTML Part 3: Spaceship Cursor + Navigation
-  html_parts[3] = ''' <!-- Spaceship Cursor -->
+  <!-- ===== COSMIC EVENTS BACKGROUND (fixed, hidden titles) ===== -->
+  <section class="black-hole-section section background-event" id="black-hole" data-cosmic-event="black-hole">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 01</span>
+        <h2 class="section-title">Black Hole</h2>
+        <p class="section-desc">Where light bends and time dilates</p>
+      </div>
+      <div class="black-hole-container">
+        <div class="black-hole"></div>
+        <div class="accretion-disk"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="supernova-section section background-event" id="supernova" data-cosmic-event="supernova">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 02</span>
+        <h2 class="section-title">Supernova</h2>
+        <p class="section-desc">The death of a star — a brilliant explosion</p>
+      </div>
+      <div class="supernova-container">
+        <div class="supernova-star"></div>
+        <div class="supernova-shockwave"></div>
+        <div class="supernova-shockwave"></div>
+        <div class="supernova-shockwave"></div>
+        <div class="supernova-shockwave"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="nebula-rebirth-section section background-event" id="nebula-rebirth"
+    data-cosmic-event="nebula-rebirth">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 03</span>
+        <h2 class="section-title">Nebula Rebirth</h2>
+        <p class="section-desc">From stellar death, new stars are born</p>
+      </div>
+      <div class="nebula-rebirth-container">
+        <div class="nebula-cloud nebula-cloud-1"></div>
+        <div class="nebula-cloud nebula-cloud-2"></div>
+        <div class="nebula-cloud nebula-cloud-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="wormhole-section section background-event" id="wormhole" data-cosmic-event="wormhole">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 04</span>
+        <h2 class="section-title">Wormhole</h2>
+        <p class="section-desc">A bridge through spacetime</p>
+      </div>
+      <div class="wormhole-container">
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-ring"></div>
+        <div class="wormhole-tunnel"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quasar-section section background-event" id="quasar" data-cosmic-event="quasar">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 05</span>
+        <h2 class="section-title">Quasar Jet</h2>
+        <p class="section-desc">The most luminous objects in the universe</p>
+      </div>
+      <div class="quasar-container">
+        <div class="quasar-core"></div>
+        <div class="quasar-jet quasar-jet-left"></div>
+        <div class="quasar-jet quasar-jet-right"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pulsar-section section background-event" id="pulsar" data-cosmic-event="pulsar">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 06</span>
+        <h2 class="section-title">Pulsar</h2>
+        <p class="section-desc">A spinning neutron star — the universe's most precise lighthouse</p>
+      </div>
+      <div class="pulsar-container">
+        <div class="pulsar-star"></div>
+        <div class="pulsar-beam"></div>
+        <div class="pulsar-beam"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gamma-burst-section section background-event" id="gamma-burst" data-cosmic-event="gamma-burst">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 07</span>
+        <h2 class="section-title">Gamma Ray Burst</h2>
+        <p class="section-desc">The brightest electromagnetic events known</p>
+      </div>
+      <div class="gamma-burst-container">
+        <div class="gamma-source"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+        <div class="gamma-ray"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="solar-system-section section background-event" id="solar-system" data-cosmic-event="solar-system">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 08</span>
+        <h2 class="section-title">Solar System</h2>
+        <p class="section-desc">Our cosmic neighborhood</p>
+      </div>
+      <div class="solar-system-container">
+        <div class="solar-sun"></div>
+        <div class="orbit-ring orbit-ring-1"></div>
+        <div class="orbit-ring orbit-ring-2"></div>
+        <div class="orbit-ring orbit-ring-3"></div>
+        <div class="orbit-ring orbit-ring-4"></div>
+        <div class="orbit-ring orbit-ring-5"></div>
+        <div class="orbit-ring orbit-ring-6"></div>
+        <div class="orbit-planet planet-mercury"></div>
+        <div class="orbit-planet planet-venus"></div>
+        <div class="orbit-planet planet-earth"></div>
+        <div class="orbit-planet planet-mars"></div>
+        <div class="orbit-planet planet-jupiter"></div>
+        <div class="orbit-planet planet-saturn"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="aurora-section section background-event" id="aurora" data-cosmic-event="aurora">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 09</span>
+        <h2 class="section-title">Aurora Borealis</h2>
+        <p class="section-desc">Nature's light show</p>
+      </div>
+      <div class="aurora-container">
+        <div class="aurora-curtain aurora-curtain-1"></div>
+        <div class="aurora-curtain aurora-curtain-2"></div>
+        <div class="aurora-curtain aurora-curtain-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="asteroid-section section background-event" id="asteroid-belt" data-cosmic-event="asteroid-belt">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 10</span>
+        <h2 class="section-title">Asteroid Belt</h2>
+        <p class="section-desc">A ring of cosmic debris</p>
+      </div>
+      <div class="asteroid-container">
+        <div class="asteroid-belt"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cosmic-web-section section background-event" id="cosmic-web" data-cosmic-event="cosmic-web">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Cosmic Event 11</span>
+        <h2 class="section-title">Cosmic Web</h2>
+        <p class="section-desc">Filaments of dark matter connecting galaxies</p>
+      </div>
+      <div class="cosmic-web-container">
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPACESHIP CURSOR ===== -->
   <div class="spaceship-cursor" id="spaceshipCursor">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2L14 10H22L16 14L18 22L12 17L6 22L8 14L2 10H10L12 2Z" fill="url(#shipGrad)"
@@ -90,7 +258,7 @@ html_parts[2] = '''
     <div class="engine-flame"></div>
   </div>
 
-  <!-- Navigation -->
+  <!-- ===== NAVIGATION ===== -->
   <nav class="nav-glass" id="navbar">
     <div class="nav-brand">
       <img src="assets/icon.png" alt="AfterDLifex" class="nav-icon" />
@@ -108,10 +276,8 @@ html_parts[2] = '''
       <span></span><span></span><span></span>
     </div>
   </nav>
-  '''
 
-  # HTML Part 4: Hero Section
-  html_parts[4] = ''' <!-- Hero Section -->
+  <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="hero-content">
       <div class="hero-badge" data-aos="fade-up">
@@ -146,7 +312,7 @@ html_parts[2] = '''
         </a>
       </div>
 
-      <div class="hero-scroll" data-aos="fade-up" data-aos-delay="500">
+      <div class="hero-scroll">
         <div class="scroll-indicator">
           <span>Scroll</span>
           <div class="scroll-line"></div>
@@ -154,10 +320,8 @@ html_parts[2] = '''
       </div>
     </div>
   </section>
-  '''
 
-  # HTML Part 5: About Section
-  html_parts[5] = ''' <!-- About Section -->
+  <!-- ===== ABOUT ===== -->
   <section class="about section" id="about">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -212,211 +376,8 @@ html_parts[2] = '''
       </div>
     </div>
   </section>
-  '''
 
-  # HTML Part 6: Cosmic Events Background (Black Hole, Supernova, Nebula, Wormhole, Quasar)
-  html_parts[6] = ''' <!-- ================================
-       COSMIC EVENTS BACKGROUND (hidden titles, visible effects)
-       ================================ -->
-
-  <!-- 1. BLACK HOLE -->
-  <section class="black-hole-section section background-event" id="black-hole" data-cosmic-event="black-hole">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 01</span>
-        <h2 class="section-title">Black Hole</h2>
-        <p class="section-desc">Where light bends and time dilates</p>
-      </div>
-      <div class="black-hole-container" data-aos="zoom-in">
-        <div class="black-hole"></div>
-        <div class="accretion-disk"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 2. SUPERNOVA -->
-  <section class="supernova-section section background-event" id="supernova" data-cosmic-event="supernova">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 02</span>
-        <h2 class="section-title">Supernova</h2>
-        <p class="section-desc">The death of a star — a brilliant explosion</p>
-      </div>
-      <div class="supernova-container" data-aos="zoom-in">
-        <div class="supernova-star"></div>
-        <div class="supernova-shockwave"></div>
-        <div class="supernova-shockwave"></div>
-        <div class="supernova-shockwave"></div>
-        <div class="supernova-shockwave"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. NEBULA REBIRTH -->
-  <section class="nebula-rebirth-section section background-event" id="nebula-rebirth"
-    data-cosmic-event="nebula-rebirth">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 03</span>
-        <h2 class="section-title">Nebula Rebirth</h2>
-        <p class="section-desc">From stellar death, new stars are born</p>
-      </div>
-      <div class="nebula-rebirth-container" data-aos="fade-up">
-        <div class="nebula-cloud nebula-cloud-1"></div>
-        <div class="nebula-cloud nebula-cloud-2"></div>
-        <div class="nebula-cloud nebula-cloud-3"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. WORMHOLE -->
-  <section class="wormhole-section section background-event" id="wormhole" data-cosmic-event="wormhole">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 04</span>
-        <h2 class="section-title">Wormhole</h2>
-        <p class="section-desc">A bridge through spacetime</p>
-      </div>
-      <div class="wormhole-container" data-aos="zoom-in">
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-ring"></div>
-        <div class="wormhole-tunnel"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. QUASAR -->
-  <section class="quasar-section section background-event" id="quasar" data-cosmic-event="quasar">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 05</span>
-        <h2 class="section-title">Quasar Jet</h2>
-        <p class="section-desc">The most luminous objects in the universe</p>
-      </div>
-      <div class="quasar-container" data-aos="zoom-in">
-        <div class="quasar-core"></div>
-        <div class="quasar-jet quasar-jet-left"></div>
-        <div class="quasar-jet quasar-jet-right"></div>
-      </div>
-    </div>
-  </section>
-  '''
-
-  # HTML Part 7: More Cosmic Events (Pulsar, Gamma, Solar System, Aurora, Asteroid, Cosmic Web)
-  html_parts[7] = ''' <!-- 6. PULSAR -->
-  <section class="pulsar-section section background-event" id="pulsar" data-cosmic-event="pulsar">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 06</span>
-        <h2 class="section-title">Pulsar</h2>
-        <p class="section-desc">A spinning neutron star — the universe's most precise lighthouse</p>
-      </div>
-      <div class="pulsar-container" data-aos="zoom-in">
-        <div class="pulsar-star"></div>
-        <div class="pulsar-beam"></div>
-        <div class="pulsar-beam"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 7. GAMMA RAY BURST -->
-  <section class="gamma-burst-section section background-event" id="gamma-burst" data-cosmic-event="gamma-burst">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 07</span>
-        <h2 class="section-title">Gamma Ray Burst</h2>
-        <p class="section-desc">The brightest electromagnetic events known</p>
-      </div>
-      <div class="gamma-burst-container" data-aos="zoom-in">
-        <div class="gamma-source"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-        <div class="gamma-ray"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. SOLAR SYSTEM -->
-  <section class="solar-system-section section background-event" id="solar-system" data-cosmic-event="solar-system">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 08</span>
-        <h2 class="section-title">Solar System</h2>
-        <p class="section-desc">Our cosmic neighborhood</p>
-      </div>
-      <div class="solar-system-container" data-aos="zoom-in">
-        <div class="solar-sun"></div>
-        <div class="orbit-ring orbit-ring-1"></div>
-        <div class="orbit-ring orbit-ring-2"></div>
-        <div class="orbit-ring orbit-ring-3"></div>
-        <div class="orbit-ring orbit-ring-4"></div>
-        <div class="orbit-ring orbit-ring-5"></div>
-        <div class="orbit-ring orbit-ring-6"></div>
-        <div class="orbit-planet planet-mercury"></div>
-        <div class="orbit-planet planet-venus"></div>
-        <div class="orbit-planet planet-earth"></div>
-        <div class="orbit-planet planet-mars"></div>
-        <div class="orbit-planet planet-jupiter"></div>
-        <div class="orbit-planet planet-saturn"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9. AURORA BOREALIS -->
-  <section class="aurora-section section background-event" id="aurora" data-cosmic-event="aurora">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 09</span>
-        <h2 class="section-title">Aurora Borealis</h2>
-        <p class="section-desc">Nature's light show</p>
-      </div>
-      <div class="aurora-container" data-aos="fade-up">
-        <div class="aurora-curtain aurora-curtain-1"></div>
-        <div class="aurora-curtain aurora-curtain-2"></div>
-        <div class="aurora-curtain aurora-curtain-3"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 10. ASTEROID BELT -->
-  <section class="asteroid-section section background-event" id="asteroid-belt" data-cosmic-event="asteroid-belt">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 10</span>
-        <h2 class="section-title">Asteroid Belt</h2>
-        <p class="section-desc">A ring of cosmic debris</p>
-      </div>
-      <div class="asteroid-container" data-aos="zoom-in">
-        <div class="asteroid-belt"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 11. COSMIC WEB -->
-  <section class="cosmic-web-section section background-event" id="cosmic-web" data-cosmic-event="cosmic-web">
-    <div class="container">
-      <div class="section-header" data-aos="fade-up">
-        <span class="section-tag">Cosmic Event 11</span>
-        <h2 class="section-title">Cosmic Web</h2>
-        <p class="section-desc">Filaments of dark matter connecting galaxies</p>
-      </div>
-      <div class="cosmic-web-container" data-aos="zoom-in">
-      </div>
-    </div>
-  </section>
-  '''
-
-  # HTML Part 8: Extensions Section (Hero Card + HTML Tag Colorization + Style Categories start)
-  html_parts[8] = ''' <!-- EXTENSIONS SECTION -->
+  <!-- ===== EXTENSIONS ===== -->
   <section class="extensions section" id="extensions">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -475,14 +436,9 @@ html_parts[2] = '''
         </div>
       </div>
 
-      <!-- HTML TAG COLORIZATION -->
       <div class="aura-section" data-aos="fade-up" style="margin-bottom: 2rem;">
         <h3 class="aura-title">
           <span class="aura-badge">NEW in v1.2.0</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            style="margin:0 8px;">
-            <path d="M4 4l16 16M20 4L4 20" />
-          </svg>
           HTML Tag Pair Colorization System
         </h3>
         <div class="aura-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px,1fr));">
@@ -525,14 +481,8 @@ html_parts[2] = '''
             <p>Structural, Semantic, Form, Media, List, Table, Link</p>
           </div>
         </div>
-        <div class="code-block" style="margin-top: 1.5rem; background: rgba(0,0,0,0.5);">
-          <code
-            style="font-size: 0.8rem;">&lt;div&gt; → &lt;section&gt; → &lt;article&gt; → &lt;p&gt; → &lt;span&gt; → &lt;strong&gt;  •  adaptive accent colors from each theme</code>
-        </div>
       </div>
 
-      # HTML Part 9: Style Grid + AURA V3 + Install Section
-      html_parts[9] = ''' <!-- Style Categories -->
       <div class="style-grid">
         <div class="style-card" data-aos="fade-up" data-aos-delay="0">
           <div class="style-icon">
@@ -551,7 +501,6 @@ html_parts[2] = '''
             <span class="theme-tag" style="--accent:#34d399">Pulsar Beacon</span>
           </div>
         </div>
-
         <div class="style-card" data-aos="fade-up" data-aos-delay="100">
           <div class="style-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -570,7 +519,6 @@ html_parts[2] = '''
             <span class="theme-tag" style="--accent:#34d399">Neon Ronin</span>
           </div>
         </div>
-
         <div class="style-card" data-aos="fade-up" data-aos-delay="200">
           <div class="style-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -587,7 +535,6 @@ html_parts[2] = '''
             <span class="theme-tag" style="--accent:#00ff00">Tokyo Aftermath</span>
           </div>
         </div>
-
         <div class="style-card" data-aos="fade-up" data-aos-delay="300">
           <div class="style-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -604,7 +551,6 @@ html_parts[2] = '''
             <span class="theme-tag" style="--accent:#4ade80">Observatory</span>
           </div>
         </div>
-
         <div class="style-card" data-aos="fade-up" data-aos-delay="400">
           <div class="style-icon">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -622,7 +568,6 @@ html_parts[2] = '''
             <span class="theme-tag" style="--accent:#7cb87c">Oort Cloud</span>
           </div>
         </div>
-
         <div class="style-card" data-aos="fade-up" data-aos-delay="500"
           style="grid-column: 1 / -1; border-color: rgba(255,255,255,0.15);">
           <div class="style-icon">
@@ -643,7 +588,6 @@ html_parts[2] = '''
         </div>
       </div>
 
-      <!-- AURA V3 Features -->
       <div class="aura-section" data-aos="fade-up">
         <h3 class="aura-title">
           <span class="aura-badge">⚡</span>
@@ -711,7 +655,6 @@ html_parts[2] = '''
         </div>
       </div>
 
-      <!-- Install Commands -->
       <div class="install-section" data-aos="fade-up">
         <h3>Quick Install — Cosmic Themes Pack v1.5.3</h3>
         <div class="install-tabs">
@@ -747,7 +690,7 @@ html_parts[2] = '''
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- ===== PROJECTS ===== -->
   <section class="projects section" id="projects">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -831,7 +774,7 @@ html_parts[2] = '''
     </div>
   </section>
 
-  <!-- Tech Stack Section -->
+  <!-- ===== TECH STACK ===== -->
   <section class="stack section" id="stack">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -889,7 +832,7 @@ html_parts[2] = '''
     </div>
   </section>
 
-  <!-- Philosophy Section -->
+  <!-- ===== PHILOSOPHY ===== -->
   <section class="philosophy section" id="philosophy">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -922,7 +865,7 @@ html_parts[2] = '''
     </div>
   </section>
 
-  <!-- Connect Section -->
+  <!-- ===== CONNECT ===== -->
   <section class="connect section" id="connect">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -976,7 +919,7 @@ html_parts[2] = '''
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-wave">
       <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -996,6 +939,7 @@ html_parts[2] = '''
     </div>
   </footer>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="three-scene.js"></script>
   <script src="script.js"></script>
 </body>
