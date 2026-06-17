@@ -367,14 +367,13 @@
   // (Initialize all events immediately since they're background animations now)
   // ==========================================
   function initBGCosmicEvents() {
-    // Skip heavy animations on mobile for performance
-    if (CONFIG.isMobile) return;
+    const particleMultiplier = CONFIG.isMobile ? 0.4 : 1;
 
     // Black Hole
     const bhContainer = document.querySelector('#bg-black-hole .black-hole-container');
     if (bhContainer) {
       // Create particles inside the bg container
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < Math.max(10, Math.floor(30 * particleMultiplier)); i++) {
         const particle = document.createElement('div');
         particle.className = 'accretion-particle';
         const angle = Math.random() * Math.PI * 2;
@@ -393,7 +392,7 @@
     // Supernova
     const snContainer = document.querySelector('#bg-supernova .supernova-container');
     if (snContainer) {
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < Math.max(15, Math.floor(40 * particleMultiplier)); i++) {
         const debris = document.createElement('div');
         debris.className = 'supernova-debris';
         const angle = (Math.PI * 2 / 40) * i + Math.random() * 0.5;
@@ -415,7 +414,7 @@
     // Nebula Stars
     const nbContainer = document.querySelector('#bg-nebula-rebirth .nebula-rebirth-container');
     if (nbContainer) {
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < Math.max(5, Math.floor(15 * particleMultiplier)); i++) {
         const star = document.createElement('div');
         star.className = 'nebula-star-birth';
         star.style.left = (20 + Math.random() * 60) + '%';
@@ -429,7 +428,7 @@
     // Asteroid Belt
     const astContainer = document.querySelector('#bg-asteroid-belt .asteroid-container');
     if (astContainer) {
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < Math.max(10, Math.floor(30 * particleMultiplier)); i++) {
         const asteroid = document.createElement('div');
         asteroid.className = 'asteroid';
         const angle = (Math.PI * 2 / 30) * i + Math.random() * 0.3;
@@ -451,7 +450,7 @@
     const cwContainer = document.querySelector('#bg-cosmic-web .cosmic-web-container');
     if (cwContainer) {
       const nodes = [];
-      const nodeCount = 15;
+      const nodeCount = Math.max(8, Math.floor(15 * particleMultiplier));
       const containerWidth = cwContainer.offsetWidth || 200;
 
       for (let i = 0; i < nodeCount; i++) {
@@ -493,7 +492,7 @@
     const cometContainers = document.querySelectorAll('.comet-container');
     cometContainers.forEach((container, idx) => {
       // Add subtle glow particles around comets
-      for (let i = 0; i < 8; i++) {
+      for (let i = 0; i < Math.max(4, Math.floor(8 * particleMultiplier)); i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
         particle.style.width = (2 + Math.random() * 3) + 'px';
