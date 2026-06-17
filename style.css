@@ -98,6 +98,10 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
 }
 
 .bg-event {
@@ -107,6 +111,12 @@ body {
   opacity: 0.5;
   pointer-events: none;
   animation: bgEventDrift 20s ease-in-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  contain: paint;
+  transform: translateZ(0) scale(0.35);
+  isolation: isolate;
 }
 
 .bg-event-wide {
@@ -118,17 +128,17 @@ body {
 
   0%,
   100% {
-    transform: scale(0.35) translate(0, 0);
+    transform: translate3d(0, 0, 0) scale(0.35);
     opacity: 0.4;
   }
 
   33% {
-    transform: scale(0.37) translate(5px, -3px);
+    transform: translate3d(5px, -3px, 0) scale(0.35);
     opacity: 0.55;
   }
 
   66% {
-    transform: scale(0.33) translate(-3px, 5px);
+    transform: translate3d(-3px, 5px, 0) scale(0.35);
     opacity: 0.45;
   }
 }
@@ -141,17 +151,17 @@ body {
 
   0%,
   100% {
-    transform: scale(0.5) scaleX(1.2) translate(0, 0);
+    transform: translate3d(0, 0, 0) scale(0.5) scaleX(1.2);
     opacity: 0.35;
   }
 
   33% {
-    transform: scale(0.52) scaleX(1.2) translate(8px, -4px);
+    transform: translate3d(8px, -4px, 0) scale(0.5) scaleX(1.2);
     opacity: 0.5;
   }
 
   66% {
-    transform: scale(0.48) scaleX(1.2) translate(-5px, 6px);
+    transform: translate3d(-5px, 6px, 0) scale(0.5) scaleX(1.2);
     opacity: 0.4;
   }
 }
@@ -3556,12 +3566,12 @@ body {
 
   /* Make cosmic events smaller and less intrusive on mobile */
   .bg-event {
-    transform: scale(0.2);
+    transform: translate3d(0, 0, 0) scale(0.2);
     opacity: 0.3;
   }
 
   .bg-event-wide {
-    transform: scale(0.25) scaleX(1.2);
+    transform: translate3d(0, 0, 0) scale(0.25) scaleX(1.2);
     opacity: 0.25;
   }
 
