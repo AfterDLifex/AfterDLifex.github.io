@@ -1,24 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AfterDLifex — Cosmic Developer</title>
-  <meta name="description" content="Full-stack developer crafting cosmic developer experiences — VS Code themes, desktop applications, and developer tools built with aesthetic precision and functional depth." />
+  <meta name="description"
+    content="Full-stack developer crafting cosmic developer experiences — VS Code themes, desktop applications, and developer tools built with aesthetic precision and functional depth." />
   <meta name="keywords" content="developer, portfolio, VS Code themes, Tauri, Angular, Rust, cosmic, space" />
   <meta name="author" content="Sayan Das" />
   <meta name="theme-color" content="#050508" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="assets/icon.png" />
   <base target="_blank" />
-<base target="_blank">
 </head>
+'''
+
+# HTML Part 2: Body Open, Cosmic Background (Sun, Nebula, Galaxy, Shooting Stars, Planets)
+html_parts[2] = '''
+
 <body>
-  <!-- Cosmic Space Background (Fixed) -->
+  <!-- ===== FIXED COSMIC BACKGROUND ===== -->
   <div class="cosmic-bg">
     <!-- Spinning Sun -->
     <div class="sun-container">
@@ -63,16 +71,19 @@
 
   <!-- Particle Canvas (Stars) -->
   <canvas id="particle-canvas"></canvas>
+  '''
 
-  <!-- Spaceship Cursor -->
+  # HTML Part 3: Spaceship Cursor + Navigation
+  html_parts[3] = ''' <!-- Spaceship Cursor -->
   <div class="spaceship-cursor" id="spaceshipCursor">
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M12 2L14 10H22L16 14L18 22L12 17L6 22L8 14L2 10H10L12 2Z" fill="url(#shipGrad)" stroke="rgba(124,140,253,0.8)" stroke-width="0.5"/>
+      <path d="M12 2L14 10H22L16 14L18 22L12 17L6 22L8 14L2 10H10L12 2Z" fill="url(#shipGrad)"
+        stroke="rgba(124,140,253,0.8)" stroke-width="0.5" />
       <defs>
         <linearGradient id="shipGrad" x1="2" y1="2" x2="22" y2="22">
-          <stop offset="0%" stop-color="#7c8cfd"/>
-          <stop offset="50%" stop-color="#a855f7"/>
-          <stop offset="100%" stop-color="#ff7eb3"/>
+          <stop offset="0%" stop-color="#7c8cfd" />
+          <stop offset="50%" stop-color="#a855f7" />
+          <stop offset="100%" stop-color="#ff7eb3" />
         </linearGradient>
       </defs>
     </svg>
@@ -97,8 +108,10 @@
       <span></span><span></span><span></span>
     </div>
   </nav>
+  '''
 
-  <!-- Hero Section -->
+  # HTML Part 4: Hero Section
+  html_parts[4] = ''' <!-- Hero Section -->
   <section class="hero" id="hero">
     <div class="hero-content">
       <div class="hero-badge" data-aos="fade-up">
@@ -126,7 +139,8 @@
         </a>
         <a href="https://github.com/AfterDLifex" target="_blank" class="btn btn-outline">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
           </svg>
           <span>GitHub</span>
         </a>
@@ -140,8 +154,10 @@
       </div>
     </div>
   </section>
+  '''
 
-  <!-- About Section -->
+  # HTML Part 5: About Section
+  html_parts[5] = ''' <!-- About Section -->
   <section class="about section" id="about">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -182,8 +198,8 @@
               <span class="highlight">aesthetic precision</span> and <span class="highlight">functional depth</span>.
             </p>
             <p>
-              Based in <strong>West Bengal, India</strong>, I build with <strong>Tauri v2 + Angular</strong> for desktop,
-              <strong>Rust</strong> for backend safety, and a design language rooted in
+              Based in <strong>West Bengal, India</strong>, I build with <strong>Tauri v2 + Angular</strong> for
+              desktop, <strong>Rust</strong> for backend safety, and a design language rooted in
               <span class="highlight">calm futurism</span> and <span class="highlight">Vedic symbolism</span>.
             </p>
           </div>
@@ -196,18 +212,20 @@
       </div>
     </div>
   </section>
+  '''
 
-  <!-- ================================
-       COSMIC EVENTS GALLERY
+  # HTML Part 6: Cosmic Events Background (Black Hole, Supernova, Nebula, Wormhole, Quasar)
+  html_parts[6] = ''' <!-- ================================
+       COSMIC EVENTS BACKGROUND (hidden titles, visible effects)
        ================================ -->
 
   <!-- 1. BLACK HOLE -->
-  <section class="black-hole-section section" id="black-hole" data-cosmic-event="black-hole">
+  <section class="black-hole-section section background-event" id="black-hole" data-cosmic-event="black-hole">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 01</span>
         <h2 class="section-title">Black Hole</h2>
-        <p class="section-desc">Where light bends and time dilates — the ultimate cosmic mystery</p>
+        <p class="section-desc">Where light bends and time dilates</p>
       </div>
       <div class="black-hole-container" data-aos="zoom-in">
         <div class="black-hole"></div>
@@ -217,12 +235,12 @@
   </section>
 
   <!-- 2. SUPERNOVA -->
-  <section class="supernova-section section" id="supernova" data-cosmic-event="supernova">
+  <section class="supernova-section section background-event" id="supernova" data-cosmic-event="supernova">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 02</span>
         <h2 class="section-title">Supernova</h2>
-        <p class="section-desc">The death of a star — a brilliant explosion that seeds the universe with heavy elements</p>
+        <p class="section-desc">The death of a star — a brilliant explosion</p>
       </div>
       <div class="supernova-container" data-aos="zoom-in">
         <div class="supernova-star"></div>
@@ -235,12 +253,13 @@
   </section>
 
   <!-- 3. NEBULA REBIRTH -->
-  <section class="nebula-rebirth-section section" id="nebula-rebirth" data-cosmic-event="nebula-rebirth">
+  <section class="nebula-rebirth-section section background-event" id="nebula-rebirth"
+    data-cosmic-event="nebula-rebirth">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 03</span>
         <h2 class="section-title">Nebula Rebirth</h2>
-        <p class="section-desc">From stellar death, new stars are born — the cosmic cycle of creation</p>
+        <p class="section-desc">From stellar death, new stars are born</p>
       </div>
       <div class="nebula-rebirth-container" data-aos="fade-up">
         <div class="nebula-cloud nebula-cloud-1"></div>
@@ -251,12 +270,12 @@
   </section>
 
   <!-- 4. WORMHOLE -->
-  <section class="wormhole-section section" id="wormhole" data-cosmic-event="wormhole">
+  <section class="wormhole-section section background-event" id="wormhole" data-cosmic-event="wormhole">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 04</span>
         <h2 class="section-title">Wormhole</h2>
-        <p class="section-desc">A bridge through spacetime — connecting distant corners of the universe</p>
+        <p class="section-desc">A bridge through spacetime</p>
       </div>
       <div class="wormhole-container" data-aos="zoom-in">
         <div class="wormhole-ring"></div>
@@ -271,12 +290,12 @@
   </section>
 
   <!-- 5. QUASAR -->
-  <section class="quasar-section section" id="quasar" data-cosmic-event="quasar">
+  <section class="quasar-section section background-event" id="quasar" data-cosmic-event="quasar">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 05</span>
         <h2 class="section-title">Quasar Jet</h2>
-        <p class="section-desc">The most luminous objects in the universe — powered by supermassive black holes</p>
+        <p class="section-desc">The most luminous objects in the universe</p>
       </div>
       <div class="quasar-container" data-aos="zoom-in">
         <div class="quasar-core"></div>
@@ -285,9 +304,11 @@
       </div>
     </div>
   </section>
+  '''
 
-  <!-- 6. PULSAR -->
-  <section class="pulsar-section section" id="pulsar" data-cosmic-event="pulsar">
+  # HTML Part 7: More Cosmic Events (Pulsar, Gamma, Solar System, Aurora, Asteroid, Cosmic Web)
+  html_parts[7] = ''' <!-- 6. PULSAR -->
+  <section class="pulsar-section section background-event" id="pulsar" data-cosmic-event="pulsar">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 06</span>
@@ -303,12 +324,12 @@
   </section>
 
   <!-- 7. GAMMA RAY BURST -->
-  <section class="gamma-burst-section section" id="gamma-burst" data-cosmic-event="gamma-burst">
+  <section class="gamma-burst-section section background-event" id="gamma-burst" data-cosmic-event="gamma-burst">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 07</span>
         <h2 class="section-title">Gamma Ray Burst</h2>
-        <p class="section-desc">The brightest electromagnetic events known — releasing more energy in seconds than our Sun in its lifetime</p>
+        <p class="section-desc">The brightest electromagnetic events known</p>
       </div>
       <div class="gamma-burst-container" data-aos="zoom-in">
         <div class="gamma-source"></div>
@@ -325,12 +346,12 @@
   </section>
 
   <!-- 8. SOLAR SYSTEM -->
-  <section class="solar-system-section section" id="solar-system" data-cosmic-event="solar-system">
+  <section class="solar-system-section section background-event" id="solar-system" data-cosmic-event="solar-system">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 08</span>
         <h2 class="section-title">Solar System</h2>
-        <p class="section-desc">Our cosmic neighborhood — a dance of planets around a star</p>
+        <p class="section-desc">Our cosmic neighborhood</p>
       </div>
       <div class="solar-system-container" data-aos="zoom-in">
         <div class="solar-sun"></div>
@@ -351,12 +372,12 @@
   </section>
 
   <!-- 9. AURORA BOREALIS -->
-  <section class="aurora-section section" id="aurora" data-cosmic-event="aurora">
+  <section class="aurora-section section background-event" id="aurora" data-cosmic-event="aurora">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 09</span>
         <h2 class="section-title">Aurora Borealis</h2>
-        <p class="section-desc">Nature's light show — charged particles dancing in Earth's magnetic field</p>
+        <p class="section-desc">Nature's light show</p>
       </div>
       <div class="aurora-container" data-aos="fade-up">
         <div class="aurora-curtain aurora-curtain-1"></div>
@@ -367,12 +388,12 @@
   </section>
 
   <!-- 10. ASTEROID BELT -->
-  <section class="asteroid-section section" id="asteroid-belt" data-cosmic-event="asteroid-belt">
+  <section class="asteroid-section section background-event" id="asteroid-belt" data-cosmic-event="asteroid-belt">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 10</span>
         <h2 class="section-title">Asteroid Belt</h2>
-        <p class="section-desc">The remnants of a planet that never formed — a ring of cosmic debris</p>
+        <p class="section-desc">A ring of cosmic debris</p>
       </div>
       <div class="asteroid-container" data-aos="zoom-in">
         <div class="asteroid-belt"></div>
@@ -381,23 +402,21 @@
   </section>
 
   <!-- 11. COSMIC WEB -->
-  <section class="cosmic-web-section section" id="cosmic-web" data-cosmic-event="cosmic-web">
+  <section class="cosmic-web-section section background-event" id="cosmic-web" data-cosmic-event="cosmic-web">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
         <span class="section-tag">Cosmic Event 11</span>
         <h2 class="section-title">Cosmic Web</h2>
-        <p class="section-desc">The large-scale structure of the universe — filaments of dark matter connecting galaxies</p>
+        <p class="section-desc">Filaments of dark matter connecting galaxies</p>
       </div>
       <div class="cosmic-web-container" data-aos="zoom-in">
       </div>
     </div>
   </section>
+  '''
 
-  <!-- ================================
-       END COSMIC EVENTS
-       ================================ -->
-
-  <!-- EXTENSIONS SECTION -->
+  # HTML Part 8: Extensions Section (Hero Card + HTML Tag Colorization + Style Categories start)
+  html_parts[8] = ''' <!-- EXTENSIONS SECTION -->
   <section class="extensions section" id="extensions">
     <div class="container">
       <div class="section-header" data-aos="fade-up">
@@ -415,11 +434,16 @@
               <h3>Cosmic Dark Themes Pack</h3>
               <p class="extension-version">v1.5.3 — Light & Dark · HTML Tag Colors · AURA V3</p>
               <p class="extension-desc">
-                <strong>30 themes</strong> — 25 dark + 5 light Classic themes. <strong>NEW in 1.5.3:</strong> Light theme UI improvements — sidebar icons, line numbers, button colors & minimap slider visibility.
-                <strong>v1.5.2:</strong> Soft, eye-friendly light workbench colors. <strong>v1.5.1:</strong> 5 new Light Classic themes.
-                <strong>v1.4.1:</strong> 75% smaller extension (1.5MB → 350KB). <strong>v1.3.1:</strong> Punctuation visibility fixed.
-                <strong>v1.3.0:</strong> 12 user-configurable settings. <strong>v1.2.0:</strong> HTML Tag Colorization — 6-level nesting, 7 semantic categories, active tag glow & guide lines.
-                <strong>v1.1.0:</strong> AURA V3 Engine — bracket colors, error glow, unsaved indicators & icon state system.
+                <strong>30 themes</strong> — 25 dark + 5 light Classic themes. <strong>NEW in 1.5.3:</strong> Light
+                theme UI improvements.
+                <strong>v1.5.2:</strong> Soft, eye-friendly light workbench colors. <strong>v1.5.1:</strong> 5 new Light
+                Classic themes.
+                <strong>v1.4.1:</strong> 75% smaller extension (1.5MB → 350KB). <strong>v1.3.1:</strong> Punctuation
+                visibility fixed.
+                <strong>v1.3.0:</strong> 12 user-configurable settings. <strong>v1.2.0:</strong> HTML Tag Colorization —
+                6-level nesting, 7 semantic categories.
+                <strong>v1.1.0:</strong> AURA V3 Engine — bracket colors, error glow, unsaved indicators & icon state
+                system.
               </p>
               <div class="extension-badges">
                 <span class="badge">v1.5.3</span>
@@ -433,7 +457,8 @@
             </div>
           </div>
           <div class="extension-actions">
-            <a href="https://open-vsx.org/extension/AfterDLifex/cosmic-themes-pack" target="_blank" class="btn btn-primary">
+            <a href="https://open-vsx.org/extension/AfterDLifex/cosmic-themes-pack" target="_blank"
+              class="btn btn-primary">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" />
               </svg>
@@ -441,7 +466,8 @@
             </a>
             <a href="https://github.com/AfterDLifex/cosmic-dark-themes" target="_blank" class="btn btn-outline">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
               </svg>
               View Source
             </a>
@@ -453,49 +479,67 @@
       <div class="aura-section" data-aos="fade-up" style="margin-bottom: 2rem;">
         <h3 class="aura-title">
           <span class="aura-badge">NEW in v1.2.0</span>
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin:0 8px;"><path d="M4 4l16 16M20 4L4 20" /></svg>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            style="margin:0 8px;">
+            <path d="M4 4l16 16M20 4L4 20" />
+          </svg>
           HTML Tag Pair Colorization System
         </h3>
         <div class="aura-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px,1fr));">
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l7 7M20 4l-7 7M4 20l7-7M20 20l-7-7" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4l7 7M20 4l-7 7M4 20l7-7M20 20l-7-7" />
+              </svg>
             </div>
             <h4>6-Level Nested Colors</h4>
-            <p>Each nesting depth gets distinct cosmic hue — perfect for complex HTML structures</p>
+            <p>Each nesting depth gets distinct cosmic hue</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l2 2" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v4l2 2" />
+              </svg>
             </div>
             <h4>Active Tag Glow</h4>
-            <p>Glow effect on tag pair where cursor is placed + guide line backgrounds</p>
+            <p>Glow effect on tag pair where cursor is placed</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3l18 18M21 3L3 21" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 3l18 18M21 3L3 21" />
+              </svg>
             </div>
             <h4>Tag Guide Lines</h4>
-            <p>Subtle vertical lines connecting matching opening/closing tags</p>
+            <p>Subtle vertical lines connecting matching tags</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2" /><path d="M8 2v20M16 2v20M2 8h20M2 16h20" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="2" />
+                <path d="M8 2v20M16 2v20M2 8h20M2 16h20" />
+              </svg>
             </div>
             <h4>7 Semantic Categories</h4>
-            <p>Structural, Semantic, Form, Media, List, Table, Link — each with unique palette</p>
+            <p>Structural, Semantic, Form, Media, List, Table, Link</p>
           </div>
         </div>
         <div class="code-block" style="margin-top: 1.5rem; background: rgba(0,0,0,0.5);">
-          <code style="font-size: 0.8rem;">&lt;div&gt; → &lt;section&gt; → &lt;article&gt; → &lt;p&gt; → &lt;span&gt; → &lt;strong&gt;  •  adaptive accent colors from each theme</code>
+          <code
+            style="font-size: 0.8rem;">&lt;div&gt; → &lt;section&gt; → &lt;article&gt; → &lt;p&gt; → &lt;span&gt; → &lt;strong&gt;  •  adaptive accent colors from each theme</code>
         </div>
       </div>
 
-      <!-- Style Categories -->
+      # HTML Part 9: Style Grid + AURA V3 + Install Section
+      html_parts[9] = ''' <!-- Style Categories -->
       <div class="style-grid">
         <div class="style-card" data-aos="fade-up" data-aos-delay="0">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="8" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
           </div>
           <h4>Calm</h4>
           <p>Deep focus, minimal distraction</p>
@@ -510,7 +554,11 @@
 
         <div class="style-card" data-aos="fade-up" data-aos-delay="100">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
+            </svg>
           </div>
           <h4>Gaming</h4>
           <p>High contrast, competitive edge</p>
@@ -525,7 +573,9 @@
 
         <div class="style-card" data-aos="fade-up" data-aos-delay="200">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
           </div>
           <h4>Neon</h4>
           <p>Electric energy, vibrant glow</p>
@@ -540,7 +590,9 @@
 
         <div class="style-card" data-aos="fade-up" data-aos-delay="300">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M2 12h20" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2v20M2 12h20" />
+            </svg>
           </div>
           <h4>Classic</h4>
           <p>Timeless elegance, refined balance</p>
@@ -555,7 +607,10 @@
 
         <div class="style-card" data-aos="fade-up" data-aos-delay="400">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="8" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
           </div>
           <h4>Vintage</h4>
           <p>Warm nostalgia, aged parchment</p>
@@ -568,10 +623,13 @@
           </div>
         </div>
 
-        <!-- Light Classic Themes -->
-        <div class="style-card" data-aos="fade-up" data-aos-delay="500" style="grid-column: 1 / -1; border-color: rgba(255,255,255,0.15);">
+        <div class="style-card" data-aos="fade-up" data-aos-delay="500"
+          style="grid-column: 1 / -1; border-color: rgba(255,255,255,0.15);">
           <div class="style-icon">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="8" />
+              <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+            </svg>
           </div>
           <h4>☀️ Light Classic — NEW in v1.5.1</h4>
           <p>Clean, eye-friendly light themes for focused reading</p>
@@ -594,42 +652,58 @@
         <div class="aura-grid">
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2" /><path d="M8 2v20M16 2v20M2 8h20M2 16h20" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="2" />
+                <path d="M8 2v20M16 2v20M2 8h20M2 16h20" />
+              </svg>
             </div>
             <h4>Bracket Pair Colorization</h4>
             <p>6-level nested bracket glow + active bracket + guide lines</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M20 4L4 20" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4l16 16M20 4L4 20" />
+              </svg>
             </div>
             <h4>HTML Tag Colorization</h4>
             <p>Nested tag colors, category-aware hues, tag guides & active backgrounds</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l2 2" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v4l2 2" />
+              </svg>
             </div>
             <h4>Error Glow System</h4>
             <p>Multi-layer glowing error underlines, borders & diagnostics glow</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z" /><path d="M8 4v16M16 4v16M4 8h16M4 16h16" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4h16v16H4z" />
+                <path d="M8 4v16M16 4v16M4 8h16M4 16h16" />
+              </svg>
             </div>
             <h4>Unsaved Indicators</h4>
             <p>Tab, Explorer, StatusBar & Minimap glow — pulsating modified icon</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l2 2" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v4l2 2" />
+              </svg>
             </div>
             <h4>Icon State System</h4>
             <p>Activity bar, breadcrumbs, Git states, terminal status — every icon colored</p>
           </div>
           <div class="aura-feature">
             <div class="aura-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12h18M12 3v18" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12h18M12 3v18" />
+              </svg>
             </div>
             <h4>Category-Aware Tags</h4>
             <p>Structural, semantic, form, media, list, table, link — 7 distinct palettes</p>
@@ -649,7 +723,8 @@
             <code>npx ovsx install AfterDLifex/cosmic-themes-pack</code>
             <button class="copy-btn" data-copy="npx ovsx install AfterDLifex/cosmic-themes-pack">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
               </svg>
             </button>
           </div>
@@ -657,14 +732,17 @@
         <div class="install-content" id="manual">
           <div class="code-block">
             <code>git clone https://github.com/AfterDLifex/cosmic-dark-themes.git<br />cd cosmic-dark-themes && code --install-extension cosmic-themes-pack.vsix</code>
-            <button class="copy-btn" data-copy="git clone https://github.com/AfterDLifex/cosmic-dark-themes.git && cd cosmic-dark-themes">
+            <button class="copy-btn"
+              data-copy="git clone https://github.com/AfterDLifex/cosmic-dark-themes.git && cd cosmic-dark-themes">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="9" y="9" width="13" height="13" rx="2" /><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                <rect x="9" y="9" width="13" height="13" rx="2" />
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
               </svg>
             </button>
           </div>
         </div>
-        <p style="font-size: 0.8rem; margin-top: 1rem; color:#B0B8DA;">✨ Supports editorTagHighlight.foreground1-6, category.*.foreground, nestingLevel indicators & active tag glow</p>
+        <p style="font-size: 0.8rem; margin-top: 1rem; color:#B0B8DA;">✨ Supports editorTagHighlight.foreground1-6,
+          category.*.foreground, nestingLevel indicators & active tag glow</p>
       </div>
     </div>
   </section>
@@ -682,17 +760,17 @@
           <div class="project-glow"></div>
           <div class="project-header">
             <div class="project-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="2" /><path d="M8 2v20M16 2v20M2 8h20M2 16h20" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <rect x="2" y="2" width="20" height="20" rx="2" />
+                <path d="M8 2v20M16 2v20M2 8h20M2 16h20" />
+              </svg>
             </div>
             <div class="project-status active">Active</div>
           </div>
           <h3>Afterbox</h3>
           <p>Desktop workspace manager with native Webview API, race-safe lifecycle, and multi-tenant architecture.</p>
           <div class="project-tech">
-            <span>Tauri v2</span>
-            <span>Angular 17</span>
-            <span>Rust</span>
-            <span>SQLite</span>
+            <span>Tauri v2</span><span>Angular 17</span><span>Rust</span><span>SQLite</span>
           </div>
         </div>
 
@@ -700,17 +778,17 @@
           <div class="project-glow"></div>
           <div class="project-header">
             <div class="project-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+              </svg>
             </div>
             <div class="project-status active">Active</div>
           </div>
           <h3>Zen Portfolio</h3>
           <p>Futuristic calm portfolio app with particle backgrounds, glassmorphism UI, and SQLite backend.</p>
           <div class="project-tech">
-            <span>Tauri v2</span>
-            <span>Angular 17</span>
-            <span>Signals</span>
-            <span>WAL Mode</span>
+            <span>Tauri v2</span><span>Angular 17</span><span>Signals</span><span>WAL Mode</span>
           </div>
         </div>
 
@@ -718,17 +796,18 @@
           <div class="project-glow"></div>
           <div class="project-header">
             <div class="project-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l2 2" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="8" />
+                <path d="M12 8v4l2 2" />
+              </svg>
             </div>
             <div class="project-status active">Active</div>
           </div>
           <h3>To Do Tracker</h3>
-          <p>To Do Task tracking with Rust watchdog sidecar for hang detection, crash recovery, and native OS dialogs.</p>
+          <p>To Do Task tracking with Rust watchdog sidecar for hang detection, crash recovery, and native OS dialogs.
+          </p>
           <div class="project-tech">
-            <span>Tauri v2</span>
-            <span>Rust</span>
-            <span>Watchdog</span>
-            <span>IPC</span>
+            <span>Tauri v2</span><span>Rust</span><span>Watchdog</span><span>IPC</span>
           </div>
         </div>
 
@@ -736,17 +815,16 @@
           <div class="project-glow"></div>
           <div class="project-header">
             <div class="project-icon">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l16 16M20 4L4 20" /></svg>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M4 4l16 16M20 4L4 20" />
+              </svg>
             </div>
             <div class="project-status published">Published</div>
           </div>
           <h3>Cosmic Dark Themes</h3>
-          <p>30 dark & light VS Code themes with AURA V3 engine + HTML tag colorization. Bracket colors, error glow, unsaved indicators & tag pair glow.</p>
+          <p>30 dark & light VS Code themes with AURA V3 engine + HTML tag colorization.</p>
           <div class="project-tech">
-            <span>VS Code API</span>
-            <span>Open VSX</span>
-            <span>v1.5.3</span>
-            <span>MIT</span>
+            <span>VS Code API</span><span>Open VSX</span><span>v1.5.3</span><span>MIT</span>
           </div>
         </div>
       </div>
@@ -765,74 +843,46 @@
         <div class="stack-category" data-aos="fade-up" data-aos-delay="0">
           <h3>Frontend</h3>
           <div class="stack-items">
-            <div class="stack-item" data-color="#DD0031">
-              <span class="stack-dot" style="background:#DD0031"></span>
-              <span>Angular</span>
-            </div>
-            <div class="stack-item" data-color="#3178C6">
-              <span class="stack-dot" style="background:#3178C6"></span>
-              <span>TypeScript</span>
-            </div>
-            <div class="stack-item" data-color="#B7178C">
-              <span class="stack-dot" style="background:#B7178C"></span>
-              <span>RxJS</span>
-            </div>
-            <div class="stack-item" data-color="#E34F26">
-              <span class="stack-dot" style="background:#E34F26"></span>
-              <span>HTML5</span>
-            </div>
-            <div class="stack-item" data-color="#1572B6">
-              <span class="stack-dot" style="background:#1572B6"></span>
-              <span>CSS3 / SCSS</span>
-            </div>
-            <div class="stack-item" data-color="#CC6699">
-              <span class="stack-dot" style="background:#CC6699"></span>
-              <span>Sass</span>
-            </div>
+            <div class="stack-item" data-color="#DD0031"><span class="stack-dot"
+                style="background:#DD0031"></span><span>Angular</span></div>
+            <div class="stack-item" data-color="#3178C6"><span class="stack-dot"
+                style="background:#3178C6"></span><span>TypeScript</span></div>
+            <div class="stack-item" data-color="#B7178C"><span class="stack-dot"
+                style="background:#B7178C"></span><span>RxJS</span></div>
+            <div class="stack-item" data-color="#E34F26"><span class="stack-dot"
+                style="background:#E34F26"></span><span>HTML5</span></div>
+            <div class="stack-item" data-color="#1572B6"><span class="stack-dot"
+                style="background:#1572B6"></span><span>CSS3 / SCSS</span></div>
+            <div class="stack-item" data-color="#CC6699"><span class="stack-dot"
+                style="background:#CC6699"></span><span>Sass</span></div>
           </div>
         </div>
 
         <div class="stack-category" data-aos="fade-up" data-aos-delay="100">
           <h3>Backend & Desktop</h3>
           <div class="stack-items">
-            <div class="stack-item" data-color="#000000">
-              <span class="stack-dot" style="background:#000000"></span>
-              <span>Rust</span>
-            </div>
-            <div class="stack-item" data-color="#24C8D8">
-              <span class="stack-dot" style="background:#24C8D8"></span>
-              <span>Tauri v2</span>
-            </div>
-            <div class="stack-item" data-color="#003B57">
-              <span class="stack-dot" style="background:#003B57"></span>
-              <span>SQLite</span>
-            </div>
-            <div class="stack-item" data-color="#F7DF1E">
-              <span class="stack-dot" style="background:#F7DF1E"></span>
-              <span>JavaScript</span>
-            </div>
+            <div class="stack-item" data-color="#000000"><span class="stack-dot"
+                style="background:#000000"></span><span>Rust</span></div>
+            <div class="stack-item" data-color="#24C8D8"><span class="stack-dot"
+                style="background:#24C8D8"></span><span>Tauri v2</span></div>
+            <div class="stack-item" data-color="#003B57"><span class="stack-dot"
+                style="background:#003B57"></span><span>SQLite</span></div>
+            <div class="stack-item" data-color="#F7DF1E"><span class="stack-dot"
+                style="background:#F7DF1E"></span><span>JavaScript</span></div>
           </div>
         </div>
 
         <div class="stack-category" data-aos="fade-up" data-aos-delay="200">
           <h3>Tools & Design</h3>
           <div class="stack-items">
-            <div class="stack-item" data-color="#007ACC">
-              <span class="stack-dot" style="background:#007ACC"></span>
-              <span>VS Code</span>
-            </div>
-            <div class="stack-item" data-color="#F05032">
-              <span class="stack-dot" style="background:#F05032"></span>
-              <span>Git</span>
-            </div>
-            <div class="stack-item" data-color="#F24E1E">
-              <span class="stack-dot" style="background:#F24E1E"></span>
-              <span>Figma</span>
-            </div>
-            <div class="stack-item" data-color="#7c8cfd">
-              <span class="stack-dot" style="background:#7c8cfd"></span>
-              <span>Glassmorphism</span>
-            </div>
+            <div class="stack-item" data-color="#007ACC"><span class="stack-dot"
+                style="background:#007ACC"></span><span>VS Code</span></div>
+            <div class="stack-item" data-color="#F05032"><span class="stack-dot"
+                style="background:#F05032"></span><span>Git</span></div>
+            <div class="stack-item" data-color="#F24E1E"><span class="stack-dot"
+                style="background:#F24E1E"></span><span>Figma</span></div>
+            <div class="stack-item" data-color="#7c8cfd"><span class="stack-dot"
+                style="background:#7c8cfd"></span><span>Glassmorphism</span></div>
           </div>
         </div>
       </div>
@@ -892,17 +942,20 @@
           <p>dassayansanju@gmail.com</p>
         </a>
 
-        <a href="https://github.com/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up" data-aos-delay="100">
+        <a href="https://github.com/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up"
+          data-aos-delay="100">
           <div class="connect-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
             </svg>
           </div>
           <h4>GitHub</h4>
           <p>@AfterDLifex</p>
         </a>
 
-        <a href="https://open-vsx.org/namespace/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://open-vsx.org/namespace/AfterDLifex" target="_blank" class="connect-card" data-aos="fade-up"
+          data-aos-delay="200">
           <div class="connect-icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M12 2L2 7l10 5 10-5-10-5z" />
@@ -927,7 +980,9 @@
   <footer class="footer">
     <div class="footer-wave">
       <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="rgba(124,140,253,0.05)" />
+        <path
+          d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
+          fill="rgba(124,140,253,0.05)" />
       </svg>
     </div>
     <div class="container">
@@ -941,6 +996,8 @@
     </div>
   </footer>
 
+  <script src="three-scene.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

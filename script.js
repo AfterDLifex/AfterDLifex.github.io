@@ -4,7 +4,7 @@
  * Particle system, scroll animations, tabs, counters, cosmic events
  */
 
-(function() {
+(function () {
   'use strict';
 
   // ==========================================
@@ -185,8 +185,8 @@
     if (!canvas || !ctx) return;
     particles = [];
     const count = CONFIG.isTouch ? CONFIG.particleCount.mobile :
-                  window.innerWidth < 1024 ? CONFIG.particleCount.tablet :
-                  CONFIG.particleCount.desktop;
+      window.innerWidth < 1024 ? CONFIG.particleCount.tablet :
+        CONFIG.particleCount.desktop;
     for (let i = 0; i < count; i++) particles.push(new Particle());
   }
 
@@ -375,7 +375,7 @@
   }
 
   function triggerCosmicEvent(type, container) {
-    switch(type) {
+    switch (type) {
       case 'black-hole':
         if (!container.dataset.initialized) {
           initBlackHoleParticles();
