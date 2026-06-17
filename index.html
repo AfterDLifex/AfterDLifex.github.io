@@ -60,7 +60,6 @@
   <canvas id="particle-canvas"></canvas>
 
   <!-- ===== COSMIC EVENT BACKGROUND ANIMATIONS ===== -->
-  <!-- These are scaled-down, continuously animated cosmic events positioned at various viewport locations -->
   <div class="bg-cosmic-events">
     <!-- Black Hole - top left -->
     <div class="bg-event" id="bg-black-hole" data-cosmic-event="black-hole" style="top:8%;left:5%;">
@@ -174,6 +173,51 @@
     <!-- Cosmic Web - center -->
     <div class="bg-event" id="bg-cosmic-web" data-cosmic-event="cosmic-web" style="top:42%;left:40%;">
       <div class="cosmic-web-container">
+      </div>
+    </div>
+
+    <!-- Comet 1 - crossing diagonal -->
+    <div class="bg-event" id="bg-comet-1" data-cosmic-event="comet" style="top:15%;left:10%;">
+      <div class="comet-container">
+        <div class="comet"></div>
+        <div class="comet-tail"></div>
+        <div class="comet-trail"></div>
+      </div>
+    </div>
+
+    <!-- Comet 2 - opposite direction -->
+    <div class="bg-event" id="bg-comet-2" data-cosmic-event="comet" style="bottom:20%;right:15%;">
+      <div class="comet-container">
+        <div class="comet"></div>
+        <div class="comet-tail"></div>
+        <div class="comet-trail"></div>
+      </div>
+    </div>
+
+    <!-- Comet 3 - vertical drift -->
+    <div class="bg-event" id="bg-comet-3" data-cosmic-event="comet" style="top:50%;left:50%;">
+      <div class="comet-container">
+        <div class="comet"></div>
+        <div class="comet-tail"></div>
+        <div class="comet-trail"></div>
+      </div>
+    </div>
+
+    <!-- Binary Star System - orbiting pair -->
+    <div class="bg-event" id="bg-binary-star" data-cosmic-event="binary-star" style="top:20%;right:30%;">
+      <div class="binary-star-container">
+        <div class="binary-star-1"></div>
+        <div class="binary-star-2"></div>
+      </div>
+    </div>
+
+    <!-- Pulsar Wind Nebula - cascading arcs -->
+    <div class="bg-event" id="bg-pulsar-wind" data-cosmic-event="pulsar-wind" style="top:72%;left:22%;">
+      <div class="pulsar-wind-container">
+        <div class="pulsar-wind-core"></div>
+        <div class="pulsar-wind-arc"></div>
+        <div class="pulsar-wind-arc"></div>
+        <div class="pulsar-wind-arc"></div>
       </div>
     </div>
   </div>

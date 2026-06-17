@@ -15,7 +15,8 @@
     cosmicEvents: [
       'black-hole', 'supernova', 'nebula-rebirth', 'wormhole',
       'quasar', 'pulsar', 'gamma-burst', 'solar-system',
-      'aurora', 'asteroid-belt', 'cosmic-web'
+      'aurora', 'asteroid-belt', 'cosmic-web', 'comet',
+      'binary-star', 'pulsar-wind'
     ],
     scrollThreshold: 0.3,
     isTouch: window.matchMedia('(pointer: coarse)').matches,
@@ -486,6 +487,39 @@
           }
         }
       }
+    }
+
+    // Comet trails
+    const cometContainers = document.querySelectorAll('.comet-container');
+    cometContainers.forEach((container, idx) => {
+      // Add subtle glow particles around comets
+      for (let i = 0; i < 8; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'absolute';
+        particle.style.width = (2 + Math.random() * 3) + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.borderRadius = '50%';
+        particle.style.background = `rgba(255, 200, 100, ${0.3 + Math.random() * 0.5})`;
+        particle.style.boxShadow = `0 0 6px rgba(255, 150, 50, 0.4)`;
+        particle.style.left = (30 + Math.random() * 40) + '%';
+        particle.style.top = (30 + Math.random() * 40) + '%';
+        particle.style.animation = `trailDrift ${3 + Math.random() * 2}s ease-in-out infinite`;
+        particle.style.animationDelay = `-${Math.random() * 3}s`;
+        container.appendChild(particle);
+      }
+    });
+
+    // Binary Star System - already styled with CSS animations
+    // Just ensure containers exist
+    const binaryContainer = document.querySelector('#bg-binary-star .binary-star-container');
+    if (binaryContainer) {
+      // Stars are handled by CSS orbitBinary animation
+    }
+
+    // Pulsar Wind Nebula - already styled with CSS animations
+    const pulsarWindContainer = document.querySelector('#bg-pulsar-wind .pulsar-wind-container');
+    if (pulsarWindContainer) {
+      // Arcs and core are handled by CSS animations
     }
   }
 
