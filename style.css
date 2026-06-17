@@ -3516,6 +3516,23 @@ body {
 }
 
 @media (max-width: 768px) {
+  .nav-glass {
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-brand {
+    gap: 0.5rem;
+  }
+
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .nav-title {
+    font-size: 1rem;
+  }
+
   .nav-links {
     display: none;
     position: absolute;
@@ -3537,16 +3554,12 @@ body {
     display: flex;
   }
 
-  .nav-glass {
-    padding: 1rem 1.5rem;
-  }
-
   .hero {
-    padding: 7rem 1.5rem 3rem;
+    padding: 6rem 1rem 2rem;
   }
 
   .section {
-    padding: 4rem 1.5rem;
+    padding: 3rem 1rem;
   }
 
   body {
@@ -3566,95 +3579,96 @@ body {
 
   /* Make cosmic events smaller and less intrusive on mobile */
   .bg-event {
-    transform: translate3d(0, 0, 0) scale(0.2);
-    opacity: 0.3;
-  }
-
-  .bg-event-wide {
-    transform: translate3d(0, 0, 0) scale(0.25) scaleX(1.2);
+    transform: translate3d(0, 0, 0) scale(0.15);
     opacity: 0.25;
   }
 
-  /* Adjust cosmic event positions for mobile to avoid overlap with content */
+  .bg-event-wide {
+    transform: translate3d(0, 0, 0) scale(0.2) scaleX(1.2);
+    opacity: 0.2;
+    max-width: 85%;
+  }
+
+  /* Reposition cosmic events for mobile to stay fully within viewport */
   #bg-black-hole {
-    top: 5%;
-    left: 2%;
+    top: 4%;
+    left: 1%;
   }
 
   #bg-supernova {
-    top: 3%;
-    right: 2%;
+    top: 2%;
+    right: 1%;
   }
 
   #bg-nebula-rebirth {
-    top: 25%;
-    left: 0%;
+    top: 20%;
+    left: -2%;
   }
 
   #bg-wormhole {
-    top: 22%;
-    right: 0%;
+    top: 18%;
+    right: -2%;
   }
 
   #bg-quasar {
-    bottom: 8%;
-    left: 2%;
+    bottom: 6%;
+    left: 1%;
   }
 
   #bg-pulsar {
-    bottom: 3%;
-    right: 2%;
+    bottom: 2%;
+    right: 1%;
   }
 
   #bg-gamma-burst {
-    top: 50%;
-    left: 3%;
+    top: 45%;
+    left: 2%;
   }
 
   #bg-solar-system {
-    top: 52%;
-    right: 0%;
+    top: 48%;
+    right: -2%;
   }
 
   #bg-aurora {
-    top: 1%;
-    left: 10%;
-    width: 80%;
+    top: 0%;
+    left: 8%;
+    width: 84%;
   }
 
   #bg-asteroid-belt {
-    bottom: 6%;
-    left: 30%;
+    bottom: 4%;
+    left: 25%;
   }
 
   #bg-cosmic-web {
-    top: 38%;
-    left: 35%;
+    top: 35%;
+    left: 30%;
   }
 
   #bg-comet-1 {
-    top: 8%;
-    left: 5%;
+    top: 6%;
+    left: 3%;
   }
 
   #bg-comet-2 {
-    bottom: 15%;
-    right: 10%;
+    bottom: 12%;
+    right: 5%;
   }
 
   #bg-comet-3 {
-    top: 45%;
-    left: 45%;
+    top: 42%;
+    left: 42%;
   }
 
   #bg-binary-star {
-    top: 15%;
-    right: 20%;
+    top: 12%;
+    right: 15%;
   }
 
   #bg-pulsar-wind {
-    top: 65%;
-    left: 15%;
+    top: 60%;
+    left: 10%;
   }
 
   /* Simplify new cosmic events on mobile */
