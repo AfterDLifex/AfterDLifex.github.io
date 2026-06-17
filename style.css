@@ -86,26 +86,74 @@ body {
   overflow: hidden;
 }
 
-/* Background cosmic events – scrollable sections */
-.background-event {
-  position: relative !important;
-  pointer-events: auto;
-  overflow: hidden;
-  z-index: 1 !important;
-}
+/* Background cosmic events – scrollable sections (removed — events are now inline BG animations) */
 
-.background-event .section-header {
-  display: flex !important;
-}
-
-.background-event .container {
-  position: relative;
+/* ===== BG COSMIC EVENTS WRAPPER ===== */
+.bg-cosmic-events {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.bg-event {
+  position: absolute;
+  transform: scale(0.35);
+  transform-origin: center center;
+  opacity: 0.5;
+  pointer-events: none;
+  animation: bgEventDrift 20s ease-in-out infinite alternate;
+}
+
+.bg-event-wide {
+  transform: scale(0.5) scaleX(1.2);
+  width: 70%;
+}
+
+@keyframes bgEventDrift {
+
+  0%,
+  100% {
+    transform: scale(0.35) translate(0, 0);
+    opacity: 0.4;
+  }
+
+  33% {
+    transform: scale(0.37) translate(5px, -3px);
+    opacity: 0.55;
+  }
+
+  66% {
+    transform: scale(0.33) translate(-3px, 5px);
+    opacity: 0.45;
+  }
+}
+
+.bg-event-wide {
+  animation: bgEventDriftWide 25s ease-in-out infinite alternate;
+}
+
+@keyframes bgEventDriftWide {
+
+  0%,
+  100% {
+    transform: scale(0.5) scaleX(1.2) translate(0, 0);
+    opacity: 0.35;
+  }
+
+  33% {
+    transform: scale(0.52) scaleX(1.2) translate(8px, -4px);
+    opacity: 0.5;
+  }
+
+  66% {
+    transform: scale(0.48) scaleX(1.2) translate(-5px, 6px);
+    opacity: 0.4;
+  }
 }
 
 .cosmic-bg::before {

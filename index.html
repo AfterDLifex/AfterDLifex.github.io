@@ -59,28 +59,19 @@
   <!-- Particle Canvas (Stars) -->
   <canvas id="particle-canvas"></canvas>
 
-  <!-- ===== COSMIC EVENTS BACKGROUND (fixed, hidden titles) ===== -->
-  <section class="black-hole-section section background-event" id="black-hole" data-cosmic-event="black-hole">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 01</span>
-        <h2 class="section-title">Black Hole</h2>
-        <p class="section-desc">Where light bends and time dilates</p>
-      </div>
+  <!-- ===== COSMIC EVENT BACKGROUND ANIMATIONS ===== -->
+  <!-- These are scaled-down, continuously animated cosmic events positioned at various viewport locations -->
+  <div class="bg-cosmic-events">
+    <!-- Black Hole - top left -->
+    <div class="bg-event" id="bg-black-hole" data-cosmic-event="black-hole" style="top:8%;left:5%;">
       <div class="black-hole-container">
         <div class="black-hole"></div>
         <div class="accretion-disk"></div>
       </div>
     </div>
-  </section>
 
-  <section class="supernova-section section background-event" id="supernova" data-cosmic-event="supernova">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 02</span>
-        <h2 class="section-title">Supernova</h2>
-        <p class="section-desc">The death of a star — a brilliant explosion</p>
-      </div>
+    <!-- Supernova - top right -->
+    <div class="bg-event" id="bg-supernova" data-cosmic-event="supernova" style="top:5%;right:8%;">
       <div class="supernova-container">
         <div class="supernova-star"></div>
         <div class="supernova-shockwave"></div>
@@ -89,31 +80,18 @@
         <div class="supernova-shockwave"></div>
       </div>
     </div>
-  </section>
 
-  <section class="nebula-rebirth-section section background-event" id="nebula-rebirth"
-    data-cosmic-event="nebula-rebirth">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 03</span>
-        <h2 class="section-title">Nebula Rebirth</h2>
-        <p class="section-desc">From stellar death, new stars are born</p>
-      </div>
+    <!-- Nebula Rebirth - left mid -->
+    <div class="bg-event" id="bg-nebula-rebirth" data-cosmic-event="nebula-rebirth" style="top:30%;left:2%;">
       <div class="nebula-rebirth-container">
         <div class="nebula-cloud nebula-cloud-1"></div>
         <div class="nebula-cloud nebula-cloud-2"></div>
         <div class="nebula-cloud nebula-cloud-3"></div>
       </div>
     </div>
-  </section>
 
-  <section class="wormhole-section section background-event" id="wormhole" data-cosmic-event="wormhole">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 04</span>
-        <h2 class="section-title">Wormhole</h2>
-        <p class="section-desc">A bridge through spacetime</p>
-      </div>
+    <!-- Wormhole - right mid -->
+    <div class="bg-event" id="bg-wormhole" data-cosmic-event="wormhole" style="top:28%;right:3%;">
       <div class="wormhole-container">
         <div class="wormhole-ring"></div>
         <div class="wormhole-ring"></div>
@@ -124,45 +102,27 @@
         <div class="wormhole-tunnel"></div>
       </div>
     </div>
-  </section>
 
-  <section class="quasar-section section background-event" id="quasar" data-cosmic-event="quasar">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 05</span>
-        <h2 class="section-title">Quasar Jet</h2>
-        <p class="section-desc">The most luminous objects in the universe</p>
-      </div>
+    <!-- Quasar Jet - bottom left -->
+    <div class="bg-event" id="bg-quasar" data-cosmic-event="quasar" style="bottom:10%;left:4%;">
       <div class="quasar-container">
         <div class="quasar-core"></div>
         <div class="quasar-jet quasar-jet-left"></div>
         <div class="quasar-jet quasar-jet-right"></div>
       </div>
     </div>
-  </section>
 
-  <section class="pulsar-section section background-event" id="pulsar" data-cosmic-event="pulsar">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 06</span>
-        <h2 class="section-title">Pulsar</h2>
-        <p class="section-desc">A spinning neutron star — the universe's most precise lighthouse</p>
-      </div>
+    <!-- Pulsar - bottom right -->
+    <div class="bg-event" id="bg-pulsar" data-cosmic-event="pulsar" style="bottom:5%;right:5%;">
       <div class="pulsar-container">
         <div class="pulsar-star"></div>
         <div class="pulsar-beam"></div>
         <div class="pulsar-beam"></div>
       </div>
     </div>
-  </section>
 
-  <section class="gamma-burst-section section background-event" id="gamma-burst" data-cosmic-event="gamma-burst">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 07</span>
-        <h2 class="section-title">Gamma Ray Burst</h2>
-        <p class="section-desc">The brightest electromagnetic events known</p>
-      </div>
+    <!-- Gamma Ray Burst - center left -->
+    <div class="bg-event" id="bg-gamma-burst" data-cosmic-event="gamma-burst" style="top:55%;left:6%;">
       <div class="gamma-burst-container">
         <div class="gamma-source"></div>
         <div class="gamma-ray"></div>
@@ -175,15 +135,9 @@
         <div class="gamma-ray"></div>
       </div>
     </div>
-  </section>
 
-  <section class="solar-system-section section background-event" id="solar-system" data-cosmic-event="solar-system">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 08</span>
-        <h2 class="section-title">Solar System</h2>
-        <p class="section-desc">Our cosmic neighborhood</p>
-      </div>
+    <!-- Solar System - center right -->
+    <div class="bg-event" id="bg-solar-system" data-cosmic-event="solar-system" style="top:58%;right:2%;">
       <div class="solar-system-container">
         <div class="solar-sun"></div>
         <div class="orbit-ring orbit-ring-1"></div>
@@ -200,47 +154,29 @@
         <div class="orbit-planet planet-saturn"></div>
       </div>
     </div>
-  </section>
 
-  <section class="aurora-section section background-event" id="aurora" data-cosmic-event="aurora">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 09</span>
-        <h2 class="section-title">Aurora Borealis</h2>
-        <p class="section-desc">Nature's light show</p>
-      </div>
+    <!-- Aurora Borealis - top center -->
+    <div class="bg-event bg-event-wide" id="bg-aurora" data-cosmic-event="aurora" style="top:2%;left:15%;width:70%;">
       <div class="aurora-container">
         <div class="aurora-curtain aurora-curtain-1"></div>
         <div class="aurora-curtain aurora-curtain-2"></div>
         <div class="aurora-curtain aurora-curtain-3"></div>
       </div>
     </div>
-  </section>
 
-  <section class="asteroid-section section background-event" id="asteroid-belt" data-cosmic-event="asteroid-belt">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 10</span>
-        <h2 class="section-title">Asteroid Belt</h2>
-        <p class="section-desc">A ring of cosmic debris</p>
-      </div>
+    <!-- Asteroid Belt - bottom center-left -->
+    <div class="bg-event" id="bg-asteroid-belt" data-cosmic-event="asteroid-belt" style="bottom:8%;left:35%;">
       <div class="asteroid-container">
         <div class="asteroid-belt"></div>
       </div>
     </div>
-  </section>
 
-  <section class="cosmic-web-section section background-event" id="cosmic-web" data-cosmic-event="cosmic-web">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Cosmic Event 11</span>
-        <h2 class="section-title">Cosmic Web</h2>
-        <p class="section-desc">Filaments of dark matter connecting galaxies</p>
-      </div>
+    <!-- Cosmic Web - center -->
+    <div class="bg-event" id="bg-cosmic-web" data-cosmic-event="cosmic-web" style="top:42%;left:40%;">
       <div class="cosmic-web-container">
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- ===== SPACESHIP CURSOR ===== -->
   <div class="spaceship-cursor" id="spaceshipCursor">

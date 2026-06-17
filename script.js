@@ -361,56 +361,127 @@
   }
 
   // ==========================================
-  // SCROLL OBSERVER FOR COSMIC EVENTS
+  // COSMIC EVENT BACKGROUND INITIALIZER
+  // (Initialize all events immediately since they're background animations now)
   // ==========================================
-  function initScrollCosmicEvents() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('cosmic-active');
-          const eventType = entry.target.dataset.cosmicEvent;
-          if (eventType) triggerCosmicEvent(eventType, entry.target);
-        } else {
-          entry.target.classList.remove('cosmic-active');
-        }
-      });
-    }, { threshold: CONFIG.scrollThreshold });
+  function initBGCosmicEvents() {
+    // Black Hole
+    const bhContainer = document.querySelector('#bg-black-hole .black-hole-container');
+    if (bhContainer) {
+      // Create particles inside the bg container
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'accretion-particle';
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 60 + Math.random() * 80;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+        particle.style.left = `calc(50% + ${x}px)`;
+        particle.style.top = `calc(50% + ${y}px)`;
+        particle.style.background = `hsl(${Math.random() * 60 + 240}, 80%, 60%)`;
+        particle.style.animation = `accretionOrbit ${3 + Math.random() * 4}s linear infinite`;
+        particle.style.animationDelay = `-${Math.random() * 5}s`;
+        bhContainer.appendChild(particle);
+      }
+    }
 
-    document.querySelectorAll('[data-cosmic-event]').forEach(el => observer.observe(el));
-  }
+    // Supernova
+    const snContainer = document.querySelector('#bg-supernova .supernova-container');
+    if (snContainer) {
+      for (let i = 0; i < 40; i++) {
+        const debris = document.createElement('div');
+        debris.className = 'supernova-debris';
+        const angle = (Math.PI * 2 / 40) * i + Math.random() * 0.5;
+        const distance = 30 + Math.random() * 80;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+        debris.style.left = `calc(50% + ${x}px)`;
+        debris.style.top = `calc(50% + ${y}px)`;
+        debris.style.width = (Math.random() * 3 + 1) + 'px';
+        debris.style.height = debris.style.width;
+        debris.style.background = `hsl(${Math.random() * 60 + 10}, 100%, ${60 + Math.random() * 40}%)`;
+        debris.style.boxShadow = `0 0 ${Math.random() * 8 + 2}px ${debris.style.background}`;
+        debris.style.animation = `debrisFloat ${2 + Math.random() * 3}s ease-in-out infinite alternate`;
+        debris.style.animationDelay = `-${Math.random() * 2}s`;
+        snContainer.appendChild(debris);
+      }
+    }
 
-  function triggerCosmicEvent(type, container) {
-    switch (type) {
-      case 'black-hole':
-        if (!container.dataset.initialized) {
-          initBlackHoleParticles();
-          container.dataset.initialized = 'true';
+    // Nebula Stars
+    const nbContainer = document.querySelector('#bg-nebula-rebirth .nebula-rebirth-container');
+    if (nbContainer) {
+      for (let i = 0; i < 15; i++) {
+        const star = document.createElement('div');
+        star.className = 'nebula-star-birth';
+        star.style.left = (20 + Math.random() * 60) + '%';
+        star.style.top = (20 + Math.random() * 60) + '%';
+        star.style.animationDelay = `-${Math.random() * 3}s`;
+        star.style.animationDuration = `${2 + Math.random() * 2}s`;
+        nbContainer.appendChild(star);
+      }
+    }
+
+    // Asteroid Belt
+    const astContainer = document.querySelector('#bg-asteroid-belt .asteroid-container');
+    if (astContainer) {
+      for (let i = 0; i < 30; i++) {
+        const asteroid = document.createElement('div');
+        asteroid.className = 'asteroid';
+        const angle = (Math.PI * 2 / 30) * i + Math.random() * 0.3;
+        const distance = 80 + Math.random() * 40;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+        asteroid.style.left = `calc(50% + ${x}px)`;
+        asteroid.style.top = `calc(50% + ${y}px)`;
+        asteroid.style.width = (Math.random() * 6 + 2) + 'px';
+        asteroid.style.height = (Math.random() * 6 + 2) + 'px';
+        asteroid.style.transform = `rotate(${Math.random() * 360}deg)`;
+        asteroid.style.animation = `asteroidOrbit ${15 + Math.random() * 20}s linear infinite`;
+        asteroid.style.animationDelay = `-${Math.random() * 15}s`;
+        astContainer.appendChild(asteroid);
+      }
+    }
+
+    // Cosmic Web
+    const cwContainer = document.querySelector('#bg-cosmic-web .cosmic-web-container');
+    if (cwContainer) {
+      const nodes = [];
+      const nodeCount = 15;
+      const containerWidth = cwContainer.offsetWidth || 200;
+
+      for (let i = 0; i < nodeCount; i++) {
+        const node = document.createElement('div');
+        node.className = 'web-node';
+        const x = 30 + (Math.random() - 0.5) * 60;
+        const y = 30 + (Math.random() - 0.5) * 60;
+        node.style.left = x + '%';
+        node.style.top = y + '%';
+        node.style.animationDelay = `-${Math.random() * 3}s`;
+        cwContainer.appendChild(node);
+        nodes.push({ x, y, el: node });
+      }
+
+      // Create filaments between nearby nodes
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 30) {
+            const filament = document.createElement('div');
+            filament.className = 'web-filament';
+            const midX = (nodes[i].x + nodes[j].x) / 2;
+            const midY = (nodes[i].y + nodes[j].y) / 2;
+            const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+            filament.style.left = midX + '%';
+            filament.style.top = midY + '%';
+            filament.style.width = dist + '%';
+            filament.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+            filament.style.animationDelay = `-${Math.random() * 4}s`;
+            cwContainer.appendChild(filament);
+          }
         }
-        break;
-      case 'supernova':
-        if (!container.dataset.initialized) {
-          initSupernovaDebris();
-          container.dataset.initialized = 'true';
-        }
-        break;
-      case 'nebula-rebirth':
-        if (!container.dataset.initialized) {
-          initNebulaStars();
-          container.dataset.initialized = 'true';
-        }
-        break;
-      case 'asteroid-belt':
-        if (!container.dataset.initialized) {
-          initAsteroidBelt();
-          container.dataset.initialized = 'true';
-        }
-        break;
-      case 'cosmic-web':
-        if (!container.dataset.initialized) {
-          initCosmicWeb();
-          container.dataset.initialized = 'true';
-        }
-        break;
+      }
     }
   }
 
@@ -655,7 +726,7 @@
     initCopyButtons();
     initParallax();
     initThemeTags();
-    initScrollCosmicEvents();
+    initBGCosmicEvents();
     initKeyboardShortcuts();
     initDynamicBackground();
 
