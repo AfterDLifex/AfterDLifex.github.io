@@ -18,7 +18,8 @@
       'aurora', 'asteroid-belt', 'cosmic-web'
     ],
     scrollThreshold: 0.3,
-    isTouch: window.matchMedia('(pointer: coarse)').matches
+    isTouch: window.matchMedia('(pointer: coarse)').matches,
+    isMobile: window.innerWidth < 768
   };
 
   // ==========================================
@@ -365,6 +366,9 @@
   // (Initialize all events immediately since they're background animations now)
   // ==========================================
   function initBGCosmicEvents() {
+    // Skip heavy animations on mobile for performance
+    if (CONFIG.isMobile) return;
+
     // Black Hole
     const bhContainer = document.querySelector('#bg-black-hole .black-hole-container');
     if (bhContainer) {
@@ -734,7 +738,12 @@
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => { resizeCanvas(); initParticles(); }, 250);
+      resizeTimer = setTimeout(() => {
+        resizeCanvas();
+        initParticles();
+        // Update mobile flag on resize
+        CONFIG.isMobile = window.innerWidth < 768;
+      }, 250);
     });
 
     // Visibility API

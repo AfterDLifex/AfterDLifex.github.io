@@ -3507,6 +3507,79 @@ body {
   .copy-btn {
     cursor: pointer;
   }
+
+  /* Hide custom cursor on mobile */
+  .spaceship-cursor {
+    display: none !important;
+  }
+
+  /* Make cosmic events smaller and less intrusive on mobile */
+  .bg-event {
+    transform: scale(0.2);
+    opacity: 0.3;
+  }
+
+  .bg-event-wide {
+    transform: scale(0.25) scaleX(1.2);
+    opacity: 0.25;
+  }
+
+  /* Adjust cosmic event positions for mobile to avoid overlap with content */
+  #bg-black-hole {
+    top: 5%;
+    left: 2%;
+  }
+
+  #bg-supernova {
+    top: 3%;
+    right: 2%;
+  }
+
+  #bg-nebula-rebirth {
+    top: 25%;
+    left: 0%;
+  }
+
+  #bg-wormhole {
+    top: 22%;
+    right: 0%;
+  }
+
+  #bg-quasar {
+    bottom: 8%;
+    left: 2%;
+  }
+
+  #bg-pulsar {
+    bottom: 3%;
+    right: 2%;
+  }
+
+  #bg-gamma-burst {
+    top: 50%;
+    left: 3%;
+  }
+
+  #bg-solar-system {
+    top: 52%;
+    right: 0%;
+  }
+
+  #bg-aurora {
+    top: 1%;
+    left: 10%;
+    width: 80%;
+  }
+
+  #bg-asteroid-belt {
+    bottom: 6%;
+    left: 30%;
+  }
+
+  #bg-cosmic-web {
+    top: 38%;
+    left: 35%;
+  }
 }
 
 @media (max-width: 480px) {
