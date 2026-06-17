@@ -7,15 +7,17 @@
 (function () {
     'use strict';
 
+    const isSmallMobile = window.innerWidth < 500;
     const isMobile = window.innerWidth < 768;
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(isSmallMobile ? 60 : 75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 5;
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
         antialias: !isMobile,
         powerPreference: 'high-performance'
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.5 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmallMobile ? 1 : isMobile ? 1.5 : 2));
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.domElement.id = 'three-canvas';
     renderer.domElement.style.position = 'fixed';
@@ -28,13 +30,13 @@
     document.body.appendChild(renderer.domElement);
 
     // Black Hole
-    const blackHoleGeometry = new THREE.SphereGeometry(1, isMobile ? 16 : 32, isMobile ? 16 : 32);
+    const blackHoleGeometry = new THREE.SphereGeometry(1, isSmallMobile ? 12 : isMobile ? 16 : 32, isSmallMobile ? 12 : isMobile ? 16 : 32);
     const blackHoleMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, metalness: 0.9, roughness: 0.1 });
     const blackHole = new THREE.Mesh(blackHoleGeometry, blackHoleMaterial);
     scene.add(blackHole);
 
     // Accretion Disk
-    const diskGeometry = new THREE.CircleGeometry(2, isMobile ? 16 : 32);
+    const diskGeometry = new THREE.CircleGeometry(2, isSmallMobile ? 12 : isMobile ? 16 : 32);
     const diskMaterial = new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.8, roughness: 0.2, side: THREE.DoubleSide });
     const disk = new THREE.Mesh(diskGeometry, diskMaterial);
     disk.rotation.x = Math.PI / 2;
@@ -44,11 +46,11 @@
     const nebulaParticles = [];
 
     function createNebulaParticles() {
-        const particleCount = isMobile ? 150 : 500;
+        const particleCount = isSmallMobile ? 60 : isMobile ? 150 : 500;
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0x7c8cfd,
-            size: isMobile ? 0.08 : 0.1,
+            size: isSmallMobile ? 0.05 : isMobile ? 0.08 : 0.1,
             transparent: true,
             opacity: 0.6,
             sizeAttenuation: true
@@ -78,11 +80,11 @@
     const starBirthParticles = [];
 
     function createStarBirthParticles() {
-        const particleCount = isMobile ? 80 : 200;
+        const particleCount = isSmallMobile ? 40 : isMobile ? 80 : 200;
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0xff7eb3,
-            size: isMobile ? 0.04 : 0.05,
+            size: isSmallMobile ? 0.03 : isMobile ? 0.04 : 0.05,
             transparent: true,
             opacity: 0.8,
             sizeAttenuation: true
@@ -123,7 +125,7 @@
         if (supernovaActive) return;
         supernovaActive = true;
 
-        const particleCount = isMobile ? 150 : 300;
+        const particleCount = isSmallMobile ? 60 : isMobile ? 150 : 300;
         const positions = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
         const velocities = new Float32Array(particleCount * 3);
@@ -161,7 +163,7 @@
 
     setInterval(() => {
         if (!isMobile && Math.random() > 0.97) triggerSupernova();
-    }, isMobile ? 3000 : 1000);
+    }, isSmallMobile ? 5000 : isMobile ? 3000 : 1000);
 
     // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
@@ -174,7 +176,7 @@
     const dustParticles = [];
 
     function createDustParticles(count) {
-        count = isMobile ? Math.min(count || 50, 20) : (count || 50);
+        count = isSmallMobile ? Math.min(count || 50, 10) : isMobile ? Math.min(count || 50, 20) : (count || 50);
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0x7c8cfd,
@@ -229,11 +231,11 @@
     function animate() {
         requestAnimationFrame(animate);
 
-        rotationAngle += isMobile ? 0.005 : 0.01;
+        rotationAngle += isSmallMobile ? 0.003 : isMobile ? 0.005 : 0.01;
         blackHole.rotation.z = rotationAngle;
         disk.rotation.z = rotationAngle * 0.5;
 
-        nebulaPhase += isMobile ? 0.002 : 0.005;
+        nebulaPhase += isSmallMobile ? 0.001 : isMobile ? 0.002 : 0.005;
         nebulaParticles.forEach(particle => {
             const sizeArray = particle.geometry.attributes.size.array;
             for (let i = 0; i < sizeArray.length; i++) {
@@ -293,7 +295,11 @@
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
-        if (isMobile !== (window.innerWidth < 768)) {
+
+        const nowSmallMobile = window.innerWidth < 500;
+        const nowMobile = window.innerWidth < 768;
+
+        if (nowSmallMobile !== isSmallMobile || nowMobile !== isMobile) {
             location.reload();
         }
     });
