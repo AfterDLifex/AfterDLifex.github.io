@@ -62,16 +62,21 @@
   function animateSpaceship() {
     if (!spaceship) return;
 
-    const dx = mouseX - shipX;
-    const dy = mouseY - shipY;
-    shipX += dx * 0.15;
-    shipY += dy * 0.15;
+    // Follow exact mouse position instantly
+    shipX = mouseX;
+    shipY = mouseY;
 
-    velocityX = dx * 0.15;
-    velocityY = dy * 0.15;
+    // Calculate velocity for rotation and trail effects only
+    const dx = mouseX - (spaceship._lastX || mouseX);
+    const dy = mouseY - (spaceship._lastY || mouseY);
+    spaceship._lastX = mouseX;
+    spaceship._lastY = mouseY;
+
+    velocityX = dx;
+    velocityY = dy;
 
     const angle = Math.atan2(velocityY, velocityX) * (180 / Math.PI) + 90;
-    const speed = Math.sqrt(velocityX * velocityX + velocityY * velocityY);
+    const speed = Math.sqrt(dx * dx + dy * dy);
 
     spaceship.style.transform = `translate(${shipX - 12}px, ${shipY - 12}px) rotate(${angle}deg)`;
 
@@ -537,7 +542,7 @@
   }
 
   // ==========================================
-  // PARALLAX ON SCROLL
+  // PARALLAX ON SCROLL (RAF-throttled for smoothness)
   // ==========================================
   function initParallax() {
     if (CONFIG.isTouch) return;
@@ -545,9 +550,11 @@
     const planets = document.querySelectorAll('.planet');
     const sun = document.querySelector('.sun-container');
     const galaxy = document.querySelector('.galaxy-container');
+    let lastScrollY = 0;
+    let ticking = false;
 
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
+    function applyParallax() {
+      const scrollY = lastScrollY;
       nebulas.forEach((neb, i) => {
         const speed = 0.05 + (i * 0.02);
         neb.style.transform = `translateY(${scrollY * speed}px)`;
@@ -558,7 +565,16 @@
         const speed = 0.08 + (i * 0.03);
         planet.style.transform = `translateY(${scrollY * speed}px)`;
       });
-    });
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      lastScrollY = window.scrollY;
+      if (!ticking) {
+        requestAnimationFrame(applyParallax);
+        ticking = true;
+      }
+    }, { passive: true });
   }
 
   // ==========================================
