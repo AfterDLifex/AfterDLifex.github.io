@@ -279,6 +279,9 @@
   function initBGCosmicEvents() {
     const particleMultiplier = CONFIG.isMobile ? 0.15 : 1; // Even lower on mobile
 
+    // Skip all DOM particle generation on mobile - GPU can't handle it
+    if (CONFIG.isMobile) return;
+
     // Black Hole accretion particles
     const bhContainer = document.querySelector('#bg-black-hole .black-hole-container');
     if (bhContainer) {

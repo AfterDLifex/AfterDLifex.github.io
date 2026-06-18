@@ -3630,17 +3630,94 @@ body {
     left: 10%;
   }
 
-  /* Simplify new cosmic events on mobile */
+  /* Make ALL background cosmic events completely static on mobile */
+  .bg-event {
+    animation: none !important;
+    transform: scale(0.08) !important;
+    opacity: 0.1 !important;
+  }
+
+  .bg-event-wide {
+    animation: none !important;
+    transform: scale(0.1) scaleX(1.2) !important;
+    opacity: 0.08 !important;
+  }
+
+  /* Stop ALL keyframe animations on bg-events */
+  .comet-container,
+  .binary-star-container,
+  .pulsar-wind-container,
+  .solar-system-container,
+  .wormhole-container,
+  .black-hole-container,
+  .supernova-container,
+  .nebula-rebirth-container,
+  .quasar-container,
+  .pulsar-container,
+  .gamma-burst-container,
+  .aurora-container,
+  .asteroid-container,
+  .cosmic-web-container {
+    animation: none !important;
+  }
+
+  /* Stop all rotating/orbiting children */
+  .comet,
+  .comet-tail,
+  .comet-trail,
+  .binary-star-1,
+  .binary-star-2,
+  .pulsar-wind-core,
+  .pulsar-wind-arc,
+  .solar-sun,
+  .orbit-ring,
+  .orbit-planet,
+  .wormhole-ring,
+  .wormhole-tunnel,
+  .black-hole,
+  .accretion-disk,
+  .accretion-particle,
+  .supernova-star,
+  .supernova-shockwave,
+  .supernova-debris,
+  .nebula-cloud,
+  .nebula-star-birth,
+  .quasar-core,
+  .quasar-jet,
+  .pulsar-star,
+  .pulsar-beam,
+  .gamma-source,
+  .gamma-ray,
+  .aurora-curtain,
+  .asteroid,
+  .asteroid-belt,
+  .web-node,
+  .web-filament {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Hide all dynamically created particles on mobile */
+  .accretion-particle,
+  .supernova-debris,
+  .nebula-star-birth,
+  .asteroid,
+  .comet-container > div {
+    display: none !important;
+  }
+
   .comet-container {
-    transform: scale(0.7);
+    transform: scale(0.3) !important;
   }
 
   .binary-star-container {
-    transform: scale(0.7);
+    transform: scale(0.3) !important;
   }
 
   .pulsar-wind-container {
-    transform: scale(0.6);
+    transform: scale(0.2) !important;
   }
 }
 
