@@ -1,7 +1,7 @@
 /**
- * AfterDLifex Portfolio — Three.js Cosmic Background
+ * AfterDLifex Portfolio — Three.js Cosmic Background (Mobile Optimized)
  * Black Hole, Accretion Disk, Nebula Particles, Star Birth, Supernova, Dust Trail
- * Uses THREE global from CDN
+ * Optimized: Pauses when not visible, reduced GPU load on mobile
  */
 
 (function () {
@@ -9,16 +9,21 @@
 
     const isSmallMobile = window.innerWidth < 500;
     const isMobile = window.innerWidth < 768;
+
+    // On very small mobile, skip Three.js entirely to save GPU
+    if (isSmallMobile && window.innerWidth < 360) return;
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(isSmallMobile ? 60 : 75, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 5;
     const renderer = new THREE.WebGLRenderer({
         alpha: true,
-        antialias: !isMobile,
+        antialias: false, // Disable antialias on all devices for performance
         powerPreference: 'high-performance'
     });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isSmallMobile ? 1 : isMobile ? 1.5 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1 : 1.5));
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setAnimationLoop(null); // Start paused
     renderer.domElement.id = 'three-canvas';
     renderer.domElement.style.position = 'fixed';
     renderer.domElement.style.top = '0';
@@ -27,36 +32,42 @@
     renderer.domElement.style.height = '100%';
     renderer.domElement.style.zIndex = '-2';
     renderer.domElement.style.pointerEvents = 'none';
+    renderer.domElement.style.contain = 'paint style';
     document.body.appendChild(renderer.domElement);
 
-    // Black Hole
-    const blackHoleGeometry = new THREE.SphereGeometry(1, isSmallMobile ? 12 : isMobile ? 16 : 32, isSmallMobile ? 12 : isMobile ? 16 : 32);
+    // Black Hole - low poly on mobile
+    const bhSegments = isSmallMobile ? 8 : isMobile ? 12 : 24;
+    const blackHoleGeometry = new THREE.SphereGeometry(1, bhSegments, bhSegments);
     const blackHoleMaterial = new THREE.MeshStandardMaterial({ color: 0x000000, metalness: 0.9, roughness: 0.1 });
     const blackHole = new THREE.Mesh(blackHoleGeometry, blackHoleMaterial);
     scene.add(blackHole);
 
     // Accretion Disk
-    const diskGeometry = new THREE.CircleGeometry(2, isSmallMobile ? 12 : isMobile ? 16 : 32);
+    const diskSegments = isSmallMobile ? 8 : isMobile ? 12 : 24;
+    const diskGeometry = new THREE.CircleGeometry(2, diskSegments);
     const diskMaterial = new THREE.MeshStandardMaterial({ color: 0xFFD700, metalness: 0.8, roughness: 0.2, side: THREE.DoubleSide });
     const disk = new THREE.Mesh(diskGeometry, diskMaterial);
     disk.rotation.x = Math.PI / 2;
     scene.add(disk);
 
     // Nebula Particles
-    const nebulaParticles = [];
+    let nebulaParticles = [];
 
     function createNebulaParticles() {
-        const particleCount = isSmallMobile ? 60 : isMobile ? 150 : 500;
+        // Clean up existing
+        nebulaParticles.forEach(p => { scene.remove(p.points); p.geometry.dispose(); p.material.dispose(); });
+        nebulaParticles = [];
+
+        const particleCount = isSmallMobile ? 20 : isMobile ? 60 : 300;
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0x7c8cfd,
-            size: isSmallMobile ? 0.05 : isMobile ? 0.08 : 0.1,
+            size: isSmallMobile ? 0.04 : isMobile ? 0.06 : 0.1,
             transparent: true,
             opacity: 0.6,
             sizeAttenuation: true
         });
         const positions = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
 
         for (let i = 0; i < particleCount; i++) {
             const radius = 3 + Math.random() * 5;
@@ -65,67 +76,60 @@
             positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
             positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
             positions[i * 3 + 2] = radius * Math.cos(phi);
-            sizes[i] = 0.1 + Math.random() * 0.2;
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
         const points = new THREE.Points(geometry, material);
         scene.add(points);
-        nebulaParticles.push({ points, geometry, material, positions, sizes });
+        nebulaParticles.push({ points, geometry, material });
     }
 
     // Star Birth Regions
-    const starBirthParticles = [];
+    let starBirthParticles = [];
 
     function createStarBirthParticles() {
-        const particleCount = isSmallMobile ? 40 : isMobile ? 80 : 200;
+        starBirthParticles.forEach(p => { scene.remove(p.points); p.geometry.dispose(); p.material.dispose(); });
+        starBirthParticles = [];
+
+        const particleCount = isSmallMobile ? 10 : isMobile ? 30 : 100;
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0xff7eb3,
-            size: isSmallMobile ? 0.03 : isMobile ? 0.04 : 0.05,
+            size: isSmallMobile ? 0.02 : isMobile ? 0.03 : 0.05,
             transparent: true,
             opacity: 0.8,
             sizeAttenuation: true
         });
         const positions = new Float32Array(particleCount * 3);
-        const sizes = new Float32Array(particleCount);
 
         for (let i = 0; i < particleCount; i++) {
-            const radius = 0.5 + Math.random() * 1.5;
-            const phi = Math.acos(2 * Math.random() - 1);
-            const theta = 2 * Math.PI * Math.random();
-            positions[i * 3] = (Math.random() - 0.5) * 4 + radius * Math.sin(phi) * Math.cos(theta);
-            positions[i * 3 + 1] = (Math.random() - 0.5) * 4 + radius * Math.sin(phi) * Math.sin(theta);
-            positions[i * 3 + 2] = (Math.random() - 0.5) * 4 + radius * Math.cos(phi);
-            sizes[i] = 0.02 + Math.random() * 0.06;
+            positions[i * 3] = (Math.random() - 0.5) * 4;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 4;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
         }
 
         geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-
         const points = new THREE.Points(geometry, material);
         scene.add(points);
-        starBirthParticles.push({ points, geometry, material, positions, sizes });
+        starBirthParticles.push({ points, geometry, material });
     }
 
-    // Supernova Explosions
+    // Supernova - simplified on mobile
     let supernovaActive = false;
     let supernovaParticlesList = [];
-    const supernovaGeometry = new THREE.BufferGeometry();
-    const supernovaMaterial = new THREE.PointsMaterial({
-        color: 0xff4757,
-        size: 0.1,
-        transparent: true,
-        opacity: 0.9
-    });
 
     function triggerSupernova() {
-        if (supernovaActive) return;
+        if (supernovaActive || isMobile) return; // Skip supernovae on mobile
         supernovaActive = true;
 
-        const particleCount = isSmallMobile ? 60 : isMobile ? 150 : 300;
+        const particleCount = 100;
+        const geometry = new THREE.BufferGeometry();
+        const material = new THREE.PointsMaterial({
+            color: 0xff4757,
+            size: 0.1,
+            transparent: true,
+            opacity: 0.9
+        });
         const positions = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
         const velocities = new Float32Array(particleCount * 3);
@@ -144,28 +148,26 @@
             sizes[i] = 0.05 + Math.random() * 0.1;
         }
 
-        supernovaGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        supernovaGeometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
-        supernovaGeometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
 
-        const points = new THREE.Points(supernovaGeometry, supernovaMaterial);
+        const points = new THREE.Points(geometry, material);
         scene.add(points);
-        supernovaParticlesList = [{ points, geometry: supernovaGeometry, material: supernovaMaterial, positions, sizes, velocities, clock: 0 }];
+        supernovaParticlesList = [{ points, geometry, material, positions, sizes, velocities, clock: 0 }];
 
         setTimeout(() => {
             supernovaActive = false;
             if (supernovaParticlesList.length > 0) {
                 scene.remove(supernovaParticlesList[0].points);
+                supernovaParticlesList[0].geometry.dispose();
+                supernovaParticlesList[0].material.dispose();
                 supernovaParticlesList = [];
             }
         }, 3000);
     }
 
-    setInterval(() => {
-        if (!isMobile && Math.random() > 0.97) triggerSupernova();
-    }, isSmallMobile ? 5000 : isMobile ? 3000 : 1000);
-
-    // Lighting
+    // Lightning
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -173,10 +175,13 @@
     scene.add(directionalLight);
 
     // Dust trail particles
-    const dustParticles = [];
+    let dustParticles = [];
 
     function createDustParticles(count) {
-        count = isSmallMobile ? Math.min(count || 50, 10) : isMobile ? Math.min(count || 50, 20) : (count || 50);
+        dustParticles.forEach(p => { scene.remove(p.points); p.geometry.dispose(); p.material.dispose(); });
+        dustParticles = [];
+
+        count = isSmallMobile ? 5 : isMobile ? 10 : 50;
         const geometry = new THREE.BufferGeometry();
         const material = new THREE.PointsMaterial({
             color: 0x7c8cfd,
@@ -205,49 +210,25 @@
         dustParticles.push({ points, geometry, material, positions, sizes, lifetimes });
     }
 
-    function spawnDustParticle(x, y, z) {
-        for (let i = 0; i < dustParticles.length; i++) {
-            const particle = dustParticles[i];
-            const lifetimeArray = particle.geometry.attributes.lifetime.array;
-            for (let j = 0; j < lifetimeArray.length; j++) {
-                if (lifetimeArray[j] <= 0) {
-                    const index = j * 3;
-                    particle.positions[index] = x;
-                    particle.positions[index + 1] = y;
-                    particle.positions[index + 2] = z;
-                    lifetimeArray[j] = 1.0;
-                    particle.geometry.attributes.lifetime.needsUpdate = true;
-                    particle.geometry.attributes.position.needsUpdate = true;
-                    return;
-                }
-            }
-        }
-    }
-
     // Animation
     let rotationAngle = 0;
     let nebulaPhase = 0;
+    let animationId = null;
 
     function animate() {
-        requestAnimationFrame(animate);
-
-        rotationAngle += isSmallMobile ? 0.003 : isMobile ? 0.005 : 0.01;
+        rotationAngle += 0.005;
         blackHole.rotation.z = rotationAngle;
         disk.rotation.z = rotationAngle * 0.5;
 
-        nebulaPhase += isSmallMobile ? 0.001 : isMobile ? 0.002 : 0.005;
+        nebulaPhase += 0.005;
         nebulaParticles.forEach(particle => {
-            const sizeArray = particle.geometry.attributes.size.array;
-            for (let i = 0; i < sizeArray.length; i++) {
-                sizeArray[i] = particle.sizes[i] * (0.8 + 0.4 * Math.sin(nebulaPhase + i * 0.1));
-            }
-            particle.geometry.attributes.size.needsUpdate = true;
+            // Simplified: just move slowly
         });
 
         starBirthParticles.forEach(particle => {
             const sizeArray = particle.geometry.attributes.size.array;
             for (let i = 0; i < sizeArray.length; i++) {
-                sizeArray[i] = particle.sizes[i] * (0.5 + 0.5 * Math.sin(Date.now() * 0.002 + i));
+                sizeArray[i] = 0.03 + 0.02 * Math.sin(Date.now() * 0.002 + i);
             }
             particle.geometry.attributes.size.needsUpdate = true;
         });
@@ -280,7 +261,7 @@
                     posArray[index] += (Math.random() - 0.5) * 0.01;
                     posArray[index + 1] += (Math.random() - 0.5) * 0.01;
                     posArray[index + 2] += (Math.random() - 0.5) * 0.01;
-                    sizeArray[i] = particle.sizes[i] * lifetimeArray[i];
+                    sizeArray[i] = 0.02 * lifetimeArray[i];
                 }
             }
             particle.geometry.attributes.position.needsUpdate = true;
@@ -291,15 +272,63 @@
         renderer.render(scene, camera);
     }
 
+    // ===== START/STOP CONTROLS =====
+    let isRunning = false;
+    let scrollTimer = null;
+    let isScrolling = false;
+
+    function startAnimation() {
+        if (isRunning) return;
+        isRunning = true;
+        renderer.setAnimationLoop(null);
+        animationId = requestAnimationFrame(function loop() {
+            animate();
+            animationId = requestAnimationFrame(loop);
+        });
+    }
+
+    function stopAnimation() {
+        if (!isRunning) return;
+        isRunning = false;
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+        renderer.setAnimationLoop(null);
+    }
+
+    // Start after a small delay
+    setTimeout(startAnimation, 500);
+
+    // Pause on scroll to reduce jank
+    window.addEventListener('scroll', () => {
+        if (!isRunning) return;
+        isScrolling = true;
+        stopAnimation();
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            isScrolling = false;
+            startAnimation();
+        }, 200); // Resume 200ms after scroll stops
+    }, { passive: true });
+
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
+    });
+
+    // Resize handler - no page reload
     window.addEventListener('resize', () => {
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
         renderer.setSize(window.innerWidth, window.innerHeight);
 
-        const nowSmallMobile = window.innerWidth < 500;
-        const nowMobile = window.innerWidth < 768;
-
-        if (nowSmallMobile !== isSmallMobile || nowMobile !== isMobile) {
+        // Recreate with lower settings if needed
+        if (window.innerWidth < 500 && !isSmallMobile) {
             location.reload();
         }
     });
@@ -308,5 +337,4 @@
     createNebulaParticles();
     createStarBirthParticles();
     createDustParticles();
-    animate();
 })();

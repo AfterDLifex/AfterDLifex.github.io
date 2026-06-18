@@ -186,48 +186,7 @@ body {
   z-index: 1;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .sun-container {
-    top: 10%;
-    right: 5%;
-    width: 100px;
-    height: 100px;
-  }
-
-  .nebula-1 {
-    width: 250px;
-    height: 150px;
-  }
-
-  .nebula-2 {
-    width: 200px;
-    height: 175px;
-  }
-
-  .nebula-3 {
-    width: 225px;
-    height: 140px;
-  }
-
-  .nebula-4 {
-    width: 175px;
-    height: 100px;
-  }
-
-  .galaxy-container {
-    width: 150px;
-    height: 150px;
-  }
-
-  .planet-1,
-  .planet-2,
-  .planet-3 {
-    width: 20px;
-    height: 20px;
-  }
-}
-
+/* ===== NO RESPONSIVE OVERRIDES HERE – SEE BOTTOM OF FILE ===== */
 .sun {
   position: absolute;
   inset: 0;

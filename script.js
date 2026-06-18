@@ -1,7 +1,7 @@
 /**
- * AfterDLifex Portfolio — ULTIMATE COSMIC SCRIPTS
+ * AfterDLifex Portfolio — COSMIC SCRIPTS (Mobile Optimized)
  * All Famous Cosmic Events + Scroll Animations + Spaceship Cursor
- * Particle system, scroll animations, tabs, counters, cosmic events
+ * Optimized: Pauses during scroll, reduced particles on mobile
  */
 
 (function () {
@@ -11,7 +11,7 @@
   // CONFIGURATION
   // ==========================================
   const CONFIG = {
-    particleCount: { desktop: 200, tablet: 100, mobile: 50 },
+    particleCount: { desktop: 100, tablet: 50, mobile: 20 }, // Reduced from 200/100/50
     cosmicEvents: [
       'black-hole', 'supernova', 'nebula-rebirth', 'wormhole',
       'quasar', 'pulsar', 'gamma-burst', 'solar-system',
@@ -24,7 +24,29 @@
   };
 
   // ==========================================
-  // SPACESHIP CURSOR
+  // SCROLL PAUSE MANAGER
+  // ==========================================
+  // Pauses all heavy animations during scroll for smoothness
+  let isScrollingFast = false;
+  let scrollEndTimer = null;
+  let animationThrottled = false;
+
+  // RequestAnimationFrame throttling helper
+  const rafThrottle = (callback) => {
+    let ticking = false;
+    return (...args) => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          callback(...args);
+          ticking = false;
+        });
+      }
+    };
+  };
+
+  // ==========================================
+  // SPACESHIP CURSOR (disabled on touch + hides during scroll)
   // ==========================================
   const spaceship = document.getElementById('spaceshipCursor');
   let mouseX = 0, mouseY = 0;
@@ -32,6 +54,8 @@
   let velocityX = 0, velocityY = 0;
   let isMoving = false;
   let moveTimeout = null;
+  let spaceshipAnimId = null;
+  let spaceshipRunning = false;
 
   function initSpaceshipCursor() {
     if (CONFIG.isTouch || !spaceship) return;
@@ -58,11 +82,25 @@
       });
     });
 
+    startSpaceshipAnimation();
+  }
+
+  function startSpaceshipAnimation() {
+    if (spaceshipRunning || !spaceship) return;
+    spaceshipRunning = true;
     animateSpaceship();
   }
 
+  function stopSpaceshipAnimation() {
+    spaceshipRunning = false;
+    if (spaceshipAnimId) {
+      cancelAnimationFrame(spaceshipAnimId);
+      spaceshipAnimId = null;
+    }
+  }
+
   function animateSpaceship() {
-    if (!spaceship) return;
+    if (!spaceshipRunning || !spaceship) return;
 
     // Follow exact mouse position instantly
     shipX = mouseX;
@@ -82,10 +120,10 @@
 
     spaceship.style.transform = `translate(${shipX - 12}px, ${shipY - 12}px) rotate(${angle}deg)`;
 
-    if (speed > 3 && isMoving) spawnTrailParticle(shipX, shipY, angle);
-    if (speed > 8 && isMoving && Math.random() > 0.7) spawnWarpLine(shipX, shipY, angle);
+    // Reduce trail particles
+    if (speed > 5 && isMoving && Math.random() > 0.8) spawnTrailParticle(shipX, shipY, angle);
 
-    requestAnimationFrame(animateSpaceship);
+    spaceshipAnimId = requestAnimationFrame(animateSpaceship);
   }
 
   function spawnTrailParticle(x, y, angle) {
@@ -104,23 +142,14 @@
     setTimeout(() => particle.remove(), 600);
   }
 
-  function spawnWarpLine(x, y, angle) {
-    const line = document.createElement('div');
-    line.className = 'warp-line';
-    line.style.left = (x + (Math.random() - 0.5) * 20) + 'px';
-    line.style.top = (y + (Math.random() - 0.5) * 20) + 'px';
-    line.style.transform = `rotate(${angle + 180}deg)`;
-    document.body.appendChild(line);
-    setTimeout(() => line.remove(), 400);
-  }
-
   // ==========================================
-  // PARTICLE SYSTEM (Stars)
+  // PARTICLE SYSTEM (Stars) — lightweight canvas
   // ==========================================
   const canvas = document.getElementById('particle-canvas');
   const ctx = canvas ? canvas.getContext('2d') : null;
   let particles = [];
-  let animationId = null;
+  let particleAnimId = null;
+  let particleRunning = false;
   let canvasMouseX = 0, canvasMouseY = 0;
 
   function resizeCanvas() {
@@ -223,161 +252,42 @@
     }
   }
 
-  function animateParticles() {
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    particles.forEach(p => { p.update(); p.draw(); });
-    drawConnections();
-    animationId = requestAnimationFrame(animateParticles);
+  function startParticleAnimation() {
+    if (particleRunning || !ctx) return;
+    particleRunning = true;
+    function loop() {
+      if (!particleRunning) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      drawConnections();
+      particleAnimId = requestAnimationFrame(loop);
+    }
+    loop();
   }
 
-  // ==========================================
-  // COSMIC EVENT GENERATORS
-  // ==========================================
-
-  // Black Hole Accretion Particles
-  function initBlackHoleParticles() {
-    const container = document.querySelector('.black-hole-container');
-    if (!container) return;
-
-    for (let i = 0; i < 50; i++) {
-      const particle = document.createElement('div');
-      particle.className = 'accretion-particle';
-      const angle = Math.random() * Math.PI * 2;
-      const distance = 80 + Math.random() * 120;
-      const x = Math.cos(angle) * distance;
-      const y = Math.sin(angle) * distance;
-      particle.style.left = `calc(50% + ${x}px)`;
-      particle.style.top = `calc(50% + ${y}px)`;
-      particle.style.background = `hsl(${Math.random() * 60 + 240}, 80%, 60%)`;
-      particle.style.animation = `accretionOrbit ${3 + Math.random() * 4}s linear infinite`;
-      particle.style.animationDelay = `-${Math.random() * 5}s`;
-      container.appendChild(particle);
-    }
-  }
-
-  // Supernova Debris
-  function initSupernovaDebris() {
-    const container = document.querySelector('.supernova-container');
-    if (!container) return;
-
-    for (let i = 0; i < 80; i++) {
-      const debris = document.createElement('div');
-      debris.className = 'supernova-debris';
-      const angle = (Math.PI * 2 / 80) * i + Math.random() * 0.5;
-      const distance = 60 + Math.random() * 180;
-      const x = Math.cos(angle) * distance;
-      const y = Math.sin(angle) * distance;
-      debris.style.left = `calc(50% + ${x}px)`;
-      debris.style.top = `calc(50% + ${y}px)`;
-      debris.style.width = (Math.random() * 3 + 1) + 'px';
-      debris.style.height = debris.style.width;
-      debris.style.background = `hsl(${Math.random() * 60 + 10}, 100%, ${60 + Math.random() * 40}%)`;
-      debris.style.boxShadow = `0 0 ${Math.random() * 8 + 2}px ${debris.style.background}`;
-      debris.style.animation = `debrisFloat ${2 + Math.random() * 3}s ease-in-out infinite alternate`;
-      debris.style.animationDelay = `-${Math.random() * 2}s`;
-      container.appendChild(debris);
-    }
-  }
-
-  // Nebula Star Birth
-  function initNebulaStars() {
-    const container = document.querySelector('.nebula-rebirth-container');
-    if (!container) return;
-
-    for (let i = 0; i < 30; i++) {
-      const star = document.createElement('div');
-      star.className = 'nebula-star-birth';
-      star.style.left = (20 + Math.random() * 60) + '%';
-      star.style.top = (20 + Math.random() * 60) + '%';
-      star.style.animationDelay = `-${Math.random() * 3}s`;
-      star.style.animationDuration = `${2 + Math.random() * 2}s`;
-      container.appendChild(star);
-    }
-  }
-
-  // Asteroid Belt
-  function initAsteroidBelt() {
-    const container = document.querySelector('.asteroid-container');
-    if (!container) return;
-
-    for (let i = 0; i < 60; i++) {
-      const asteroid = document.createElement('div');
-      asteroid.className = 'asteroid';
-      const angle = (Math.PI * 2 / 60) * i + Math.random() * 0.3;
-      const distance = 140 + Math.random() * 60;
-      const x = Math.cos(angle) * distance;
-      const y = Math.sin(angle) * distance;
-      asteroid.style.left = `calc(50% + ${x}px)`;
-      asteroid.style.top = `calc(50% + ${y}px)`;
-      asteroid.style.width = (Math.random() * 6 + 2) + 'px';
-      asteroid.style.height = (Math.random() * 6 + 2) + 'px';
-      asteroid.style.transform = `rotate(${Math.random() * 360}deg)`;
-      asteroid.style.animation = `asteroidOrbit ${15 + Math.random() * 20}s linear infinite`;
-      asteroid.style.animationDelay = `-${Math.random() * 15}s`;
-      container.appendChild(asteroid);
-    }
-  }
-
-  // Cosmic Web
-  function initCosmicWeb() {
-    const container = document.querySelector('.cosmic-web-container');
-    if (!container) return;
-
-    const nodes = [];
-    const nodeCount = 25;
-
-    for (let i = 0; i < nodeCount; i++) {
-      const node = document.createElement('div');
-      node.className = 'web-node';
-      const x = 50 + (Math.random() - 0.5) * 80;
-      const y = 50 + (Math.random() - 0.5) * 80;
-      node.style.left = x + '%';
-      node.style.top = y + '%';
-      node.style.animationDelay = `-${Math.random() * 3}s`;
-      container.appendChild(node);
-      nodes.push({ x, y, el: node });
-    }
-
-    // Create filaments between nearby nodes
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 30) {
-          const filament = document.createElement('div');
-          filament.className = 'web-filament';
-          const midX = (nodes[i].x + nodes[j].x) / 2;
-          const midY = (nodes[i].y + nodes[j].y) / 2;
-          const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-          filament.style.left = midX + '%';
-          filament.style.top = midY + '%';
-          filament.style.width = dist + '%';
-          filament.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-          filament.style.animationDelay = `-${Math.random() * 4}s`;
-          container.appendChild(filament);
-        }
-      }
+  function stopParticleAnimation() {
+    particleRunning = false;
+    if (particleAnimId) {
+      cancelAnimationFrame(particleAnimId);
+      particleAnimId = null;
     }
   }
 
   // ==========================================
-  // COSMIC EVENT BACKGROUND INITIALIZER
-  // (Initialize all events immediately since they're background animations now)
+  // COSMIC EVENT GENERATORS — simplified on mobile
   // ==========================================
   function initBGCosmicEvents() {
-    const particleMultiplier = CONFIG.isMobile ? 0.4 : 1;
+    const particleMultiplier = CONFIG.isMobile ? 0.15 : 1; // Even lower on mobile
 
-    // Black Hole
+    // Black Hole accretion particles
     const bhContainer = document.querySelector('#bg-black-hole .black-hole-container');
     if (bhContainer) {
-      // Create particles inside the bg container
-      for (let i = 0; i < Math.max(10, Math.floor(30 * particleMultiplier)); i++) {
+      const count = Math.max(3, Math.floor(10 * particleMultiplier));
+      for (let i = 0; i < count; i++) {
         const particle = document.createElement('div');
         particle.className = 'accretion-particle';
         const angle = Math.random() * Math.PI * 2;
-        const distance = 60 + Math.random() * 80;
+        const distance = 40 + Math.random() * 40;
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
         particle.style.left = `calc(50% + ${x}px)`;
@@ -389,32 +299,33 @@
       }
     }
 
-    // Supernova
+    // Supernova debris
     const snContainer = document.querySelector('#bg-supernova .supernova-container');
     if (snContainer) {
-      for (let i = 0; i < Math.max(15, Math.floor(40 * particleMultiplier)); i++) {
+      const count = Math.max(4, Math.floor(15 * particleMultiplier));
+      for (let i = 0; i < count; i++) {
         const debris = document.createElement('div');
         debris.className = 'supernova-debris';
-        const angle = (Math.PI * 2 / 40) * i + Math.random() * 0.5;
-        const distance = 30 + Math.random() * 80;
+        const angle = (Math.PI * 2 / count) * i + Math.random() * 0.5;
+        const distance = 20 + Math.random() * 40;
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
         debris.style.left = `calc(50% + ${x}px)`;
         debris.style.top = `calc(50% + ${y}px)`;
-        debris.style.width = (Math.random() * 3 + 1) + 'px';
+        debris.style.width = (Math.random() * 2 + 1) + 'px';
         debris.style.height = debris.style.width;
         debris.style.background = `hsl(${Math.random() * 60 + 10}, 100%, ${60 + Math.random() * 40}%)`;
-        debris.style.boxShadow = `0 0 ${Math.random() * 8 + 2}px ${debris.style.background}`;
         debris.style.animation = `debrisFloat ${2 + Math.random() * 3}s ease-in-out infinite alternate`;
         debris.style.animationDelay = `-${Math.random() * 2}s`;
         snContainer.appendChild(debris);
       }
     }
 
-    // Nebula Stars
+    // Nebula stars
     const nbContainer = document.querySelector('#bg-nebula-rebirth .nebula-rebirth-container');
     if (nbContainer) {
-      for (let i = 0; i < Math.max(5, Math.floor(15 * particleMultiplier)); i++) {
+      const count = Math.max(2, Math.floor(8 * particleMultiplier));
+      for (let i = 0; i < count; i++) {
         const star = document.createElement('div');
         star.className = 'nebula-star-birth';
         star.style.left = (20 + Math.random() * 60) + '%';
@@ -425,81 +336,78 @@
       }
     }
 
-    // Asteroid Belt
+    // Asteroid belt
     const astContainer = document.querySelector('#bg-asteroid-belt .asteroid-container');
     if (astContainer) {
-      for (let i = 0; i < Math.max(10, Math.floor(30 * particleMultiplier)); i++) {
+      const count = Math.max(3, Math.floor(10 * particleMultiplier));
+      for (let i = 0; i < count; i++) {
         const asteroid = document.createElement('div');
         asteroid.className = 'asteroid';
-        const angle = (Math.PI * 2 / 30) * i + Math.random() * 0.3;
-        const distance = 80 + Math.random() * 40;
+        const angle = (Math.PI * 2 / count) * i + Math.random() * 0.3;
+        const distance = 60 + Math.random() * 20;
         const x = Math.cos(angle) * distance;
         const y = Math.sin(angle) * distance;
         asteroid.style.left = `calc(50% + ${x}px)`;
         asteroid.style.top = `calc(50% + ${y}px)`;
-        asteroid.style.width = (Math.random() * 6 + 2) + 'px';
-        asteroid.style.height = (Math.random() * 6 + 2) + 'px';
-        asteroid.style.transform = `rotate(${Math.random() * 360}deg)`;
+        asteroid.style.width = (Math.random() * 4 + 2) + 'px';
+        asteroid.style.height = (Math.random() * 4 + 2) + 'px';
         asteroid.style.animation = `asteroidOrbit ${15 + Math.random() * 20}s linear infinite`;
         asteroid.style.animationDelay = `-${Math.random() * 15}s`;
         astContainer.appendChild(asteroid);
       }
     }
 
-    // Cosmic Web
-    const cwContainer = document.querySelector('#bg-cosmic-web .cosmic-web-container');
-    if (cwContainer) {
-      const nodes = [];
-      const nodeCount = Math.max(8, Math.floor(15 * particleMultiplier));
-      const containerWidth = cwContainer.offsetWidth || 200;
+    // Cosmic web — only on desktop
+    if (!CONFIG.isMobile) {
+      const cwContainer = document.querySelector('#bg-cosmic-web .cosmic-web-container');
+      if (cwContainer) {
+        const nodes = [];
+        const nodeCount = 8;
+        for (let i = 0; i < nodeCount; i++) {
+          const node = document.createElement('div');
+          node.className = 'web-node';
+          const x = 30 + (Math.random() - 0.5) * 60;
+          const y = 30 + (Math.random() - 0.5) * 60;
+          node.style.left = x + '%';
+          node.style.top = y + '%';
+          node.style.animationDelay = `-${Math.random() * 3}s`;
+          cwContainer.appendChild(node);
+          nodes.push({ x, y, el: node });
+        }
 
-      for (let i = 0; i < nodeCount; i++) {
-        const node = document.createElement('div');
-        node.className = 'web-node';
-        const x = 30 + (Math.random() - 0.5) * 60;
-        const y = 30 + (Math.random() - 0.5) * 60;
-        node.style.left = x + '%';
-        node.style.top = y + '%';
-        node.style.animationDelay = `-${Math.random() * 3}s`;
-        cwContainer.appendChild(node);
-        nodes.push({ x, y, el: node });
-      }
-
-      // Create filaments between nearby nodes
-      for (let i = 0; i < nodes.length; i++) {
-        for (let j = i + 1; j < nodes.length; j++) {
-          const dx = nodes[i].x - nodes[j].x;
-          const dy = nodes[i].y - nodes[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 30) {
-            const filament = document.createElement('div');
-            filament.className = 'web-filament';
-            const midX = (nodes[i].x + nodes[j].x) / 2;
-            const midY = (nodes[i].y + nodes[j].y) / 2;
-            const angle = Math.atan2(dy, dx) * (180 / Math.PI);
-            filament.style.left = midX + '%';
-            filament.style.top = midY + '%';
-            filament.style.width = dist + '%';
-            filament.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-            filament.style.animationDelay = `-${Math.random() * 4}s`;
-            cwContainer.appendChild(filament);
+        for (let i = 0; i < nodes.length; i++) {
+          for (let j = i + 1; j < nodes.length; j++) {
+            const dx = nodes[i].x - nodes[j].x;
+            const dy = nodes[i].y - nodes[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 30) {
+              const filament = document.createElement('div');
+              filament.className = 'web-filament';
+              const midX = (nodes[i].x + nodes[j].x) / 2;
+              const midY = (nodes[i].y + nodes[j].y) / 2;
+              const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+              filament.style.left = midX + '%';
+              filament.style.top = midY + '%';
+              filament.style.width = dist + '%';
+              filament.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+              filament.style.animationDelay = `-${Math.random() * 4}s`;
+              cwContainer.appendChild(filament);
+            }
           }
         }
       }
     }
 
-    // Comet trails
+    // Comet glow particles — minimal
     const cometContainers = document.querySelectorAll('.comet-container');
-    cometContainers.forEach((container, idx) => {
-      // Add subtle glow particles around comets
-      for (let i = 0; i < Math.max(4, Math.floor(8 * particleMultiplier)); i++) {
+    cometContainers.forEach((container) => {
+      for (let i = 0; i < Math.max(1, Math.floor(3 * particleMultiplier)); i++) {
         const particle = document.createElement('div');
         particle.style.position = 'absolute';
-        particle.style.width = (2 + Math.random() * 3) + 'px';
+        particle.style.width = (2 + Math.random() * 2) + 'px';
         particle.style.height = particle.style.width;
         particle.style.borderRadius = '50%';
-        particle.style.background = `rgba(255, 200, 100, ${0.3 + Math.random() * 0.5})`;
-        particle.style.boxShadow = `0 0 6px rgba(255, 150, 50, 0.4)`;
+        particle.style.background = `rgba(255, 200, 100, ${0.3 + Math.random() * 0.4})`;
         particle.style.left = (30 + Math.random() * 40) + '%';
         particle.style.top = (30 + Math.random() * 40) + '%';
         particle.style.animation = `trailDrift ${3 + Math.random() * 2}s ease-in-out infinite`;
@@ -507,23 +415,10 @@
         container.appendChild(particle);
       }
     });
-
-    // Binary Star System - already styled with CSS animations
-    // Just ensure containers exist
-    const binaryContainer = document.querySelector('#bg-binary-star .binary-star-container');
-    if (binaryContainer) {
-      // Stars are handled by CSS orbitBinary animation
-    }
-
-    // Pulsar Wind Nebula - already styled with CSS animations
-    const pulsarWindContainer = document.querySelector('#bg-pulsar-wind .pulsar-wind-container');
-    if (pulsarWindContainer) {
-      // Arcs and core are handled by CSS animations
-    }
   }
 
   // ==========================================
-  // NAVIGATION
+  // NAVIGATION — throttled
   // ==========================================
   const navbar = document.getElementById('navbar');
   const navToggle = document.getElementById('navToggle');
@@ -531,11 +426,13 @@
   const navLinkItems = document.querySelectorAll('.nav-link');
 
   function initNav() {
-    window.addEventListener('scroll', () => {
+    const handleScroll = rafThrottle(() => {
       if (window.scrollY > 50) navbar.classList.add('scrolled');
       else navbar.classList.remove('scrolled');
       updateActiveNav();
     });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     navToggle?.addEventListener('click', () => navLinks.classList.toggle('active'));
 
@@ -568,7 +465,7 @@
   }
 
   // ==========================================
-  // SCROLL REVEAL (AOS-like)
+  // SCROLL REVEAL (AOS-like) — IntersectionObserver
   // ==========================================
   function initScrollReveal() {
     const observer = new IntersectionObserver((entries) => {
@@ -584,7 +481,7 @@
   }
 
   // ==========================================
-  // COUNTER ANIMATION
+  // COUNTER ANIMATION — throttled
   // ==========================================
   function initCounters() {
     const counters = document.querySelectorAll('.stat-number');
@@ -602,9 +499,8 @@
 
   function animateCounter(el, target) {
     let current = 0;
-    const increment = target / 60;
-    const duration = 1500;
-    const stepTime = duration / 60;
+    const increment = target / 30;
+    const stepTime = 30;
     const timer = setInterval(() => {
       current += increment;
       if (current >= target) { current = target; clearInterval(timer); }
@@ -650,7 +546,7 @@
   }
 
   // ==========================================
-  // PARALLAX ON SCROLL (RAF-throttled for smoothness)
+  // PARALLAX ON SCROLL — throttled + disabled on touch
   // ==========================================
   function initParallax() {
     if (CONFIG.isTouch) return;
@@ -658,11 +554,9 @@
     const planets = document.querySelectorAll('.planet');
     const sun = document.querySelector('.sun-container');
     const galaxy = document.querySelector('.galaxy-container');
-    let lastScrollY = 0;
-    let ticking = false;
 
-    function applyParallax() {
-      const scrollY = lastScrollY;
+    const applyParallax = rafThrottle(() => {
+      const scrollY = window.scrollY;
       nebulas.forEach((neb, i) => {
         const speed = 0.05 + (i * 0.02);
         neb.style.transform = `translateY(${scrollY * speed}px)`;
@@ -673,16 +567,9 @@
         const speed = 0.08 + (i * 0.03);
         planet.style.transform = `translateY(${scrollY * speed}px)`;
       });
-      ticking = false;
-    }
+    });
 
-    window.addEventListener('scroll', () => {
-      lastScrollY = window.scrollY;
-      if (!ticking) {
-        requestAnimationFrame(applyParallax);
-        ticking = true;
-      }
-    }, { passive: true });
+    window.addEventListener('scroll', applyParallax, { passive: true });
   }
 
   // ==========================================
@@ -711,16 +598,12 @@
   // ==========================================
   function initKeyboardShortcuts() {
     document.addEventListener('keydown', (e) => {
-      if (e.key === '1') scrollToEvent('black-hole');
-      if (e.key === '2') scrollToEvent('supernova');
-      if (e.key === '3') scrollToEvent('nebula-rebirth');
-      if (e.key === '4') scrollToEvent('wormhole');
-      if (e.key === '5') scrollToEvent('quasar');
-      if (e.key === '6') scrollToEvent('pulsar');
-      if (e.key === '7') scrollToEvent('gamma-burst');
-      if (e.key === '8') scrollToEvent('solar-system');
-      if (e.key === '9') scrollToEvent('aurora');
-      if (e.key === '0') scrollToEvent('asteroid-belt');
+      if (e.key >= '1' && e.key <= '9') {
+        const events = ['black-hole', 'supernova', 'nebula-rebirth', 'wormhole', 'quasar', 'pulsar', 'gamma-burst', 'solar-system', 'aurora'];
+        scrollToEvent(events[parseInt(e.key) - 1]);
+      } else if (e.key === '0') {
+        scrollToEvent('asteroid-belt');
+      }
     });
   }
 
@@ -730,22 +613,40 @@
   }
 
   // ==========================================
-  // DYNAMIC COSMIC BACKGROUND EFFECTS
+  // DYNAMIC BACKGROUND — throttled
   // ==========================================
   function initDynamicBackground() {
-    // Add subtle color shift based on scroll position
-    let lastScroll = 0;
-    window.addEventListener('scroll', () => {
+    const handleScroll = rafThrottle(() => {
       const scrollY = window.scrollY;
       const maxScroll = document.body.scrollHeight - window.innerHeight;
+      if (maxScroll <= 0) return;
       const progress = scrollY / maxScroll;
-
-      // Shift background hue slightly based on scroll
-      const hue = 240 + progress * 60; // Blue to purple range
+      const hue = 240 + progress * 60;
       document.documentElement.style.setProperty('--bg-shift-hue', hue);
-
-      lastScroll = scrollY;
     });
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+
+  // ==========================================
+  // SCROLL EVENTS — pause everything during fast scroll
+  // ==========================================
+  function initScrollPause() {
+    let scrollPauseTimeout = null;
+    window.addEventListener('scroll', () => {
+      // Pause heavy animations during scroll
+      if (!isScrollingFast) {
+        isScrollingFast = true;
+        stopParticleAnimation();
+        stopSpaceshipAnimation();
+      }
+      clearTimeout(scrollPauseTimeout);
+      scrollPauseTimeout = setTimeout(() => {
+        isScrollingFast = false;
+        startParticleAnimation();
+        startSpaceshipAnimation();
+      }, 150);
+    }, { passive: true });
   }
 
   // ==========================================
@@ -754,7 +655,7 @@
   function init() {
     resizeCanvas();
     initParticles();
-    animateParticles();
+    startParticleAnimation();
     initSpaceshipCursor();
     initNav();
     initScrollReveal();
@@ -766,23 +667,28 @@
     initBGCosmicEvents();
     initKeyboardShortcuts();
     initDynamicBackground();
+    initScrollPause();
 
-    // Resize handler
+    // Resize handler — debounced
     let resizeTimer;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         resizeCanvas();
         initParticles();
-        // Update mobile flag on resize
         CONFIG.isMobile = window.innerWidth < 768;
       }, 250);
     });
 
     // Visibility API
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) cancelAnimationFrame(animationId);
-      else animateParticles();
+      if (document.hidden) {
+        stopParticleAnimation();
+        stopSpaceshipAnimation();
+      } else {
+        startParticleAnimation();
+        startSpaceshipAnimation();
+      }
     });
 
     // Canvas mouse tracking
